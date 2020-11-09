@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterpractice/component/ButtonImaged.dart';
 import 'package:flutterpractice/component/CardBox.dart';
 
 class SignIn extends StatefulWidget{
@@ -32,7 +33,7 @@ class _SignIn extends State<SignIn>{
               padding: EdgeInsets.only(left: 33,right: 33),
               child: Divider(
                 thickness: 4,
-                  color: Colors.cyan
+                  color: Color(0xff29B2FE)
               ),
             ),
             Container(
@@ -91,7 +92,8 @@ class _SignIn extends State<SignIn>{
                                 height: 55,
                                 margin: EdgeInsets.only(
                                     right: 10, left: 10, top: 20),
-                                child: RaisedButton(
+                                 child:
+                                RaisedButton(
                                   onPressed: () {
                                     // Validate returns true if the form is valid, otherwise false.
                                     if (_formKey.currentState.validate()) {
@@ -158,14 +160,14 @@ class _SignIn extends State<SignIn>{
                                     style: TextStyle(
                                         color: Color(0xffDD4B39), fontSize: 16),
                                   ),
-                                   icon:Image.asset("images/google.png",height: 30,width: 30,)
-                                    ,
+                                   icon:Image.asset("images/google.png",height: 30,width: 30,),
                                     shape:RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(8.0),
                                         side: BorderSide(color: Color(0xff29B2FE))
                                     )
                                 ),
-                              )
+
+                              ),
                             ],
                           )
 
@@ -179,21 +181,25 @@ class _SignIn extends State<SignIn>{
               )),),
             SizedBox(height: 20,),
             Container(
-            child: RaisedButton(
-              onPressed: () {
-                // Validate returns true if the form is valid, otherwise false.
-                if (_formKey.currentState.validate()) {
-                  // If the form is valid, display a snackbar. In the real world,
-                  // you'd often call a server or save the information in a database.
-                }
-              },
-              color: Colors.white,
-              child: Text(
-                'SIGN UP',
-                style: TextStyle(color: Color(0xff29B2FE), fontSize: 16),
+              width: double.infinity,
+              height: 55,
+              margin: EdgeInsets.only(
+                  right: 10, left: 10, top: 32),
+              child:
+              RaisedButton(
+                onPressed: () {
+                  // Validate returns true if the form is valid, otherwise false.
+
+                },
+                child: Text('SIGN UP'),
+                color:Colors.white,
+                 shape:RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      side: BorderSide(color: Color(0xff29B2FE),width: 2)
+                  )
+              )
               ),
-            ),
-          ),
+
         ],
       ),
     );
