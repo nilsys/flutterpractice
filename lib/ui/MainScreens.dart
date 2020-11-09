@@ -2,13 +2,14 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterpractice/ui/SignIn.dart';
 
 import 'Home.dart';
 import 'Login.dart';
 
 class _MainScreen extends State<MainScreen> {
   var _selectedIndex ;
-  List<Widget> _Screens=[Home(),Login()];
+  List<Widget> _Screens=[Home(),Login(),SignIn()];
   PageController _pageController=PageController();
   // void _onItemSelected (int selectedItem){
   //       setState(() {
