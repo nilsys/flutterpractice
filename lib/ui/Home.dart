@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterpractice/Model/HomeResponse.dart';
-import 'package:flutterpractice/network/NetWork.dart';
+import 'package:flutterpractice/network/Network.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class Home extends StatefulWidget{
@@ -16,13 +16,13 @@ class Home extends StatefulWidget{
 class _Home extends State<Home>{
   int _selectedIndex = 0;
   var _PageController = PageController();
-  var netWork=new NetWork();
+  var netWork=new Network();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    NetWork n = new NetWork();
+    Network n = new Network();
     n.getNearBy();
   }
 
@@ -440,7 +440,7 @@ class _Home extends State<Home>{
      );
 
 
-Widget VerticalRecyclerView(BuildContext context,NetWork netWork)=>
+Widget VerticalRecyclerView(BuildContext context,Network netWork)=>
     Container(
       alignment: Alignment.topCenter,
       width:  400,

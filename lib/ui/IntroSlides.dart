@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterpractice/ui/MainScreens.dart';
+import 'package:flutterpractice/ui/SignIn.dart';
+import 'package:flutterpractice/ui/SignUp.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class IntroSlides extends StatefulWidget {
   IntroSlides({Key key}) : super(key: key);
@@ -20,6 +23,7 @@ class IntroScreenState extends State<IntroSlides> {
     // TODO: implement initState
     super.initState();
 
+    checkFirstSeen(context);
 
     slides.add(new Slide(
       title: "CAR BREAKDOWN",
@@ -238,6 +242,24 @@ class IntroScreenState extends State<IntroSlides> {
       context,
       MaterialPageRoute(builder: (context) => MainScreen()),
     );
+  }
+
+  Future checkFirstSeen(BuildContext context) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool _seen = (prefs.getBool('seen')?? false);
+
+    print("oooo"+_seen.toString());
+
+    if (_seen==true) {
+      Navigator.of(context).pushReplacement(
+          new MaterialPageRoute(builder: (context) => new SignIn()));
+    } else {
+      await prefs.setBool('seen', true);
+      Navigator.of(context).pushReplacement(
+          new MaterialPageRoute(builder: (context) => new IntroSlides()));
+      bool _seen = (prefs.getBool('seen'));
+      print("oooo2"+_seen.toString());
+    }
   }
 
 }

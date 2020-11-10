@@ -62,6 +62,12 @@ flutter:
     - images/login.png
     - images/facebook.png
     - images/google.png
+    - images/splashbackground.png
+    - images/logo.png
+    - images/signup.png
+    - images/client.png
+    - images/Workshop.png
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

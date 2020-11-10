@@ -1,12 +1,14 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterpractice/network/NetWork.dart';
+import 'package:flutterpractice/network/Network.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import 'MainScreens.dart';
 
 class _Login extends State<Login>{
  // var email,password;
-  var network=NetWork();
+  var network=Network();
   //var utils= Utils();
   var subscription;
   TextEditingController emailController = new TextEditingController();
@@ -156,6 +158,8 @@ class _Login extends State<Login>{
       ),
     );
   }
+
+
 
   Future<bool> _checkInternet() async {
      var connectivityResult = await (Connectivity().checkConnectivity());

@@ -32,25 +32,21 @@ class _SplashScreen extends State<splashScreen>  {
 
     }
   }
-
-
-
   @override
   Widget build(BuildContext context)  {
 
 
     // TODO: implement build
     return MaterialApp(home : new SplashScreen(
-        seconds: 2,
+        seconds: 3,
         routeName: "/",
-        navigateAfterSeconds: new IntroSlides()    ,
-        title: new Text('Welcome In SplashScreen'),
-        image: new Image.asset('images/folder.png'),
+        navigateAfterSeconds: new IntroSlides(),
+        image: new Image.asset('images/logo.png'),
+        imageBackground: Image.asset('images/splashbackground.png').image ,
         backgroundColor: Colors.white,
         styleTextUnderTheLoader: new TextStyle(),
         photoSize: 100.0,
         useLoader: false,
-      //    loaderColor: Colors.red
     ),
       debugShowCheckedModeBanner: false
 
@@ -61,7 +57,7 @@ class _SplashScreen extends State<splashScreen>  {
   void initState() {
     // TODO: implement initState
     super.initState();
-    checkFirstSeen(context);
+//    checkFirstSeen(context);
   }
 
 }
