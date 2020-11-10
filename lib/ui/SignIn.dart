@@ -12,7 +12,6 @@ class SignIn extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-
     return _SignIn();
   }
 
@@ -31,7 +30,7 @@ class _SignIn extends State<SignIn>{
   void initState() {
     // TODO: implement initState
     super.initState();
-  //  checkUser(context);
+    checkUser(context);
 
   }
 
@@ -131,22 +130,27 @@ class _SignIn extends State<SignIn>{
                                     right: 10, left: 10, top: 20),
                                 child:
                                 RaisedButton(
-                                  onPressed: () {
+                                  onPressed: () async {
                                     // Validate returns true if the form is valid, otherwise false.
                                     if (_formKey.currentState.validate()) {
                                       // If the form is valid, display a snackbar. In the real world,
                                       // you'd often call a server or save the information in a database.
 
-                                        network.login(emailController.text, passwordController.text).then((value){
+                                        await network.login(emailController.text, passwordController.text).then((value) async {
+                                          print("oooo"+value.toString());
                                           if (value==true){
-                                            print ("success");
+                                            SharedPreferences prefs = await SharedPreferences.getInstance();
+                                            await prefs.setBool('isUser', true);
+                                            print ("UserSaved");
                                             Navigator.of(context).pushReplacement(
                                                 new MaterialPageRoute(builder: (context) => new MainScreen()));
                                           }else{
                                             print('Wrong Email');
-                                           createToast();
 
                                           }
+                                        },onError: (){
+                                          createToast();
+
                                         }
                                         );
                                     }
@@ -251,8 +255,8 @@ class _SignIn extends State<SignIn>{
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool _user = (prefs.getBool('isUser') ?? false);
 
-    print("oooo" + _user.toString());
-
+    print("isUser" + _user.toString());
+    print('asdasdasdadasd');
     if (_user == true) {
       Navigator.of(context).pushReplacement(
           new MaterialPageRoute(builder: (context) => new MainScreen()));

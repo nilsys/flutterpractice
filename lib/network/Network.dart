@@ -65,7 +65,7 @@ class Network {
     }
   }
 
-  Future<bool> login(String email,String password) async {
+  Future<User> login(String email,String password) async {
     var url ="$urlAer/login";
     var response = await http.post(url, headers: <String, String>{
       'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ class Network {
 
       LoginResponse loginResponse = LoginResponse.fromJson(jsondata);
       print('success ${loginResponse.user.name}');
-      return true;
+      return loginResponse.user;
 
     } else {
       // If the server did not return a 200 OK response,
@@ -97,7 +97,7 @@ class Network {
      // ErrorLoginResponse errorLoginResponse =  ErrorLoginResponse.fromJson(errorData);
      // print(errorLoginResponse.message);
 
-      return false;
+
 
     }
   }

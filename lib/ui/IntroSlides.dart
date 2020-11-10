@@ -23,7 +23,6 @@ class IntroScreenState extends State<IntroSlides> {
     // TODO: implement initState
     super.initState();
 
-    checkFirstSeen(context);
 
     slides.add(new Slide(
       title: "CAR BREAKDOWN",
@@ -42,7 +41,7 @@ class IntroScreenState extends State<IntroSlides> {
           fontWeight: FontWeight.bold,
           fontStyle: FontStyle.normal,
           fontFamily: 'Raleway'),
-      pathImage: "images/folder.png",
+      pathImage: "images/firstintro.png",
     ));
 
     slides.add(new Slide(
@@ -59,7 +58,7 @@ class IntroScreenState extends State<IntroSlides> {
             fontSize: 20.0,
             fontStyle: FontStyle.italic,
             fontFamily: 'Raleway'),
-        pathImage: "images/folder.png",
+        pathImage: "images/secondintro.png",
       ));
 
     slides.add(new Slide(
@@ -76,7 +75,7 @@ class IntroScreenState extends State<IntroSlides> {
           fontSize: 20.0,
           fontStyle: FontStyle.italic,
           fontFamily: 'Raleway'),
-      pathImage: "images/folder.png",
+      pathImage: "images/thirdintro.png",
     ));
 
     slides.add(new Slide(
@@ -93,7 +92,7 @@ class IntroScreenState extends State<IntroSlides> {
           fontSize: 20.0,
           fontStyle: FontStyle.italic,
           fontFamily: 'Raleway'),
-      pathImage: "images/folder.png",
+      pathImage: "images/forthintro.png",
     ));
 
   }
@@ -240,26 +239,11 @@ class IntroScreenState extends State<IntroSlides> {
   onTabSkipped() {
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => MainScreen()),
+      MaterialPageRoute(builder: (context) => SignIn()),
     );
   }
 
-  Future checkFirstSeen(BuildContext context) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool _seen = (prefs.getBool('seen') ?? false);
 
-    print("seen"+_seen.toString());
-
-    if (_seen==true) {
-      Navigator.of(context).pushReplacement(
-          new MaterialPageRoute(builder: (context) => new SignIn()));
-    } else {
-      await prefs.setBool('seen', true);
-
-      bool _seen = (prefs.getBool('seen'));
-      print("seen"+_seen.toString());
-    }
-  }
 
 }
 

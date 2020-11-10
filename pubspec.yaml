@@ -69,6 +69,10 @@ flutter:
     - images/signup.png
     - images/client.png
     - images/Workshop.png
+    - images/firstintro.png
+    - images/secondintro.png
+    - images/thirdintro.png
+    - images/forthintro.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
