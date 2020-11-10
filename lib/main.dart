@@ -6,5 +6,5 @@ import 'package:flutterpractice/ui/SplashScreen.dart';
 
 
 void main() {
-  runApp(MaterialApp(home:splashScreen()));
+  runApp(MaterialApp(home:splashScreen(),debugShowCheckedModeBanner: false));
 }
