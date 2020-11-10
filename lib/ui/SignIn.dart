@@ -141,18 +141,15 @@ class _SignIn extends State<SignIn>{
                                           if (value==true){
                                             SharedPreferences prefs = await SharedPreferences.getInstance();
                                             await prefs.setBool('isUser', true);
-                                            print ("UserSaved");
                                             Navigator.of(context).pushReplacement(
                                                 new MaterialPageRoute(builder: (context) => new MainScreen()));
                                           }else{
                                             print('Wrong Email');
 
                                           }
-                                        },onError: (){
-                                          createToast();
-
                                         }
-                                        );
+                                        ).catchError(handleError())
+                                        ;
                                     }
                                   },
                                   child: Text('Login'),
@@ -284,4 +281,10 @@ class _SignIn extends State<SignIn>{
 
 
   }
+
+  Function handleError() {
+    createToast();
+    print('Email is wrong ');
   }
+
+}
