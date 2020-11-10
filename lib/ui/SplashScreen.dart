@@ -14,24 +14,7 @@ class splashScreen extends StatefulWidget{
   }
 }
 class _SplashScreen extends State<splashScreen>  {
-  Future checkFirstSeen(BuildContext context) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool _seen = (prefs.getBool('seen')?? false);
 
-    print("oooo"+_seen.toString());
-
-    if (_seen==true) {
-      Navigator.of(context).pushReplacement(
-          new MaterialPageRoute(builder: (context) => new MainScreen()));
-    } else {
-      await prefs.setBool('seen', true);
-      Navigator.of(context).pushReplacement(
-          new MaterialPageRoute(builder: (context) => new IntroSlides()));
-      bool _seen = (prefs.getBool('seen'));
-      print("oooo2"+_seen.toString());
-
-    }
-  }
   @override
   Widget build(BuildContext context)  {
 
@@ -57,7 +40,6 @@ class _SplashScreen extends State<splashScreen>  {
   void initState() {
     // TODO: implement initState
     super.initState();
-//    checkFirstSeen(context);
   }
 
 }

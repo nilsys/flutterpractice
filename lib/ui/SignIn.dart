@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterpractice/Validation.dart';
-import 'package:flutterpractice/component/ButtonImaged.dart';
 import 'package:flutterpractice/component/CardBox.dart';
 import 'package:flutterpractice/network/Network.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'MainScreens.dart';
@@ -31,7 +31,7 @@ class _SignIn extends State<SignIn>{
   void initState() {
     // TODO: implement initState
     super.initState();
-    checkUser(context);
+  //  checkUser(context);
 
   }
 
@@ -137,21 +137,22 @@ class _SignIn extends State<SignIn>{
                                       // If the form is valid, display a snackbar. In the real world,
                                       // you'd often call a server or save the information in a database.
 
-
                                         network.login(emailController.text, passwordController.text).then((value){
                                           if (value==true){
                                             print ("success");
+                                            Navigator.of(context).pushReplacement(
+                                                new MaterialPageRoute(builder: (context) => new MainScreen()));
                                           }else{
                                             print('Wrong Email');
+                                           createToast();
+
                                           }
                                         }
                                         );
-
                                     }
                                   },
                                   child: Text('Login'),
                                   color: Color(0xff29B2FE),
-
                                 ),
                               ),
                               Container(
@@ -260,5 +261,23 @@ class _SignIn extends State<SignIn>{
       // bool _seen = (prefs.getBool('isUser'));
       // print("oooo2"+_seen.toString());
     }
+  }
+
+  void createToast(){
+    var toast;
+    if (toast==null){
+          toast = new Fluttertoast();
+          toast= Fluttertoast.showToast(
+              msg: "This is Center Short Toast",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Colors.red,
+              textColor: Colors.white,
+              fontSize: 16.0
+          );
+    }
+
+
   }
   }

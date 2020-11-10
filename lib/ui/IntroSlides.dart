@@ -246,19 +246,18 @@ class IntroScreenState extends State<IntroSlides> {
 
   Future checkFirstSeen(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool _seen = (prefs.getBool('seen')?? false);
+    bool _seen = (prefs.getBool('seen') ?? false);
 
-    print("oooo"+_seen.toString());
+    print("seen"+_seen.toString());
 
     if (_seen==true) {
       Navigator.of(context).pushReplacement(
           new MaterialPageRoute(builder: (context) => new SignIn()));
     } else {
       await prefs.setBool('seen', true);
-      Navigator.of(context).pushReplacement(
-          new MaterialPageRoute(builder: (context) => new IntroSlides()));
+
       bool _seen = (prefs.getBool('seen'));
-      print("oooo2"+_seen.toString());
+      print("seen"+_seen.toString());
     }
   }
 
