@@ -73,6 +73,7 @@ flutter:
     - images/secondintro.png
     - images/thirdintro.png
     - images/forthintro.png
+    - images/chat.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

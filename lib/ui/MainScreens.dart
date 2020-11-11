@@ -2,6 +2,7 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterpractice/ui/ClassicGarage.dart';
 import 'package:flutterpractice/ui/SignIn.dart';
 
 import 'Home.dart';
@@ -9,17 +10,9 @@ import 'Login.dart';
 
 class _MainScreen extends State<MainScreen> {
   var _selectedIndex ;
-  List<Widget> _Screens=[Home(),Login(),SignIn()];
+  List<Widget> _Screens=[Home(),ClassicGarage(),SignIn()];
   PageController _pageController=PageController();
-  // void _onItemSelected (int selectedItem){
-  //       setState(() {
-  //     _selectedIndex = index;
-  //     _pageController.animateToPage(index,
-  //         duration: Duration(milliseconds: 300), curve: Curves.ease);
-  //   })
-  //   print(selectedItem);
-  //   _pageController.jumpToPage(selectedItem);
-  // }
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {

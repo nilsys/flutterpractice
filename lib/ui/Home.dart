@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterpractice/Model/HomeResponse.dart';
+import 'package:flutterpractice/Model/NearbyResponse.dart';
+import 'package:flutterpractice/home/HomeRepository.dart';
 import 'package:flutterpractice/network/Network.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class Home extends StatefulWidget{
@@ -15,22 +17,16 @@ class Home extends StatefulWidget{
 
 class _Home extends State<Home>{
   int _selectedIndex = 0;
-  var _PageController = PageController();
   var netWork=new Network();
-
+  var homeRepository=HomeRepository();
+  var token;
   @override
-  void initState() {
+  Future<void> initState() {
     // TODO: implement initState
     super.initState();
-    Network n = new Network();
-    n.getNearBy();
-  }
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-      _PageController.jumpToPage(_selectedIndex);
-    });
+   // SharedPreferences prefs =  SharedPreferences.getInstance();
+   // token = (prefs.getString('Token'));
+    //token ="eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjAxNWUyMTgxNzc2NjVkODUwZWYzZWQ0NWMyMTE5ZTBkMjQ1ZTZlMDlmMGI4NGM4OTYwMTBjMDlkODI1MjEzYTZjZDcwZjVkOGU1NDNjM2RhIn0.eyJhdWQiOiIxIiwianRpIjoiMDE1ZTIxODE3NzY2NWQ4NTBlZjNlZDQ1YzIxMTllMGQyNDVlNmUwOWYwYjg0Yzg5NjAxMGMwOWQ4MjUyMTNhNmNkNzBmNWQ4ZTU0M2MzZGEiLCJpYXQiOjE2MDUwODYxNTEsIm5iZiI6MTYwNTA4NjE1MSwiZXhwIjoxNjM2NjIyMTUxLCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.PV5Q9dxqcC8wBdfDYx8xCvondoi6j79IrvbDCuYufWZ7eXJ5LzC0HB1zR_uxYLgSLwLYY9i_n0wCsrast5d1BUoR2ODdW5wDu-Y11_uOX7q72Jvhc9MyJ7fK5l_0kDXegSrtMmh_8yeI5hbD4YoGbiwT0L-b1N2SvWrQOvtnyf347H18jB1FNoiuI87T_P_3RqPgMFCLgQkk0AHXrwdqeya25MuUsIKsiaKdl5fTKdWQLexyDXaQgyvZ2Ona5kbsC77avuRrX1x7XxYdQhIuZi3lYsN8ZoCyiFS9ry5Sm4QyO-8VCcgYv5FjOo8B1plm3uyVN7Snkjbf41hIA9nn89fXGqGRPOrVagsQMBlK-YTD6M0eIPODbCxIohWlEM0PeXNwAZyOOjHh068zXnQSaYYx7F_0ZxmOze8QbHxm1JmvDocrHeALGaWQpPce_8HGKxMLCerW5AvcZR4jxNdvG9RVSkPCvWdA499APKsEdRhJ2nh5HWOEA0ow-pF57K03VD8ubZ3CE8g7a-XsTsQJGOejVZoSYZe31X4snFl9Tehvi-0WkmoWPNiUwzSbyMUyyXv-6H8hOX9pnwtdnN_GB5gfOa4HufJB_5UXh6oa9IaNk0LB3sbncy5lS6-av3rWNl9XCgNLYtgEq-cNXPRE0GWBG-k5EYNUGPaaBPXwHoI";
   }
   @override
   Widget build(BuildContext context) {
@@ -48,14 +44,19 @@ class _Home extends State<Home>{
             Container(
                 alignment: Alignment.centerLeft,
                 padding: EdgeInsets.only(left: 12,top:10),
-
                 child: Text("Nearby workshops",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22),)),
-            Container(child: VerticalRecyclerView(context,netWork),height: 420,),
+            Container(child:  VerticalRecyclerView(context,homeRepository,token),height: 420,),
         //    NewCard(context)
           ],
         )),
     );
   }
+
+  // Future<String> getToken() async{
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   token = prefs.getString('Token');
+  //   return token;
+  // }
 }
 
  Widget HorizentalRecyclerView () => Container(
@@ -440,16 +441,16 @@ class _Home extends State<Home>{
      );
 
 
-Widget VerticalRecyclerView(BuildContext context,Network netWork)=>
+Widget VerticalRecyclerView(BuildContext context,HomeRepository homeRepository,String token)=>
     Container(
       alignment: Alignment.topCenter,
       width:  400,
      // height:180,
-      child: FutureBuilder(
-       future: netWork.getNearBy(),
-        builder: (context,snapShot){
+      child: FutureBuilder<List<Provider>>(
+       future: homeRepository.getNearby("users/lat/37.33233141/long/-122.0312186?page=1"),
+        builder: (BuildContext context, AsyncSnapshot<List<Provider>> snapShot){
          if (snapShot.data!=null) {
-           List<Data> list = snapShot.data;
+           List<Provider> list = snapShot.data;
            return ListView.builder(
              itemCount: list.length,
              itemBuilder: (context, index) {
@@ -483,7 +484,7 @@ Widget VerticalRecyclerView(BuildContext context,Network netWork)=>
                                      allowHalfRating: false,
                                      onRated: (v) {},
                                      starCount: 5,
-                                     rating: 5,
+                                     rating: double.parse(list[index].rates.toString()),
                                      size: 25.0,
                                      isReadOnly: true,
                                      filledIconData: Icons.star,
@@ -577,4 +578,3 @@ Widget VerticalRecyclerView(BuildContext context,Network netWork)=>
         },
       ),
     );
-
