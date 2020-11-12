@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterpractice/Model/NearbyResponse.dart';
+import 'package:flutterpractice/component/MultiLine.dart';
 import 'package:flutterpractice/home/HomeRepository.dart';
 import 'package:flutterpractice/network/Network.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -51,12 +52,6 @@ class _Home extends State<Home>{
         )),
     );
   }
-
-  // Future<String> getToken() async{
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   token = prefs.getString('Token');
-  //   return token;
-  // }
 }
 
  Widget HorizentalRecyclerView () => Container(
@@ -69,13 +64,13 @@ class _Home extends State<Home>{
          children:<Widget> [
            Container(
              width:  400,
-           height:100,
+           height:150,
            padding: EdgeInsets.all(10),
          child: Card(
            shape: RoundedRectangleBorder(
              borderRadius: BorderRadius.circular(15.0),
            ),
-          color: Colors.blue,
+          color:  Color(0xff405A7B),
           child: Container(
             child: Column(
               children: [
@@ -97,6 +92,8 @@ class _Home extends State<Home>{
                   ],
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
 
@@ -109,36 +106,45 @@ class _Home extends State<Home>{
                           ),
                         ),
 
-                        padding: EdgeInsets.all(8),
+                        padding: EdgeInsets.all(10),
 
                     ),
                     Container(child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          children: [
-                            Container(child: Text("Mechanical"),
-                            padding: EdgeInsets.only(bottom: 55),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left:80.0,bottom: 55),
-                              child: Container(child: Text("200 Projects",
-                                 style: TextStyle( color: Colors.white,),
-                                textAlign: TextAlign.right,),
-                                alignment: Alignment.topRight,),
-                            )
-                          ],
-                        ),
-                        Row(children: [
+                              Row(
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.only(top: 14),
+                                    child: Text(
+                                      "Mechanical",
+                                      style: TextStyle(
+                                          color: Color(0xff29B2FE),
+                                          fontSize: 16),
+                                    ),
+                                  ),
 
+                                  Container(
+                                      margin: EdgeInsets.only(top: 14),
+                                      child: Text(
+                                        "200 Projects",
+                                        style: TextStyle(
+                                            color: Color(0xff29B2FE),
+                                            fontSize: 16),
+                                      ))
+                                ],
+                              ),
+                              Row(children: [
 
 
                           Container(
                         //error is here
-                        //    child: Text("description ",style: TextStyle( color: Colors.white,),
+                           child: Text("description ",style: TextStyle( color: Colors.white,)
 
                           )
 
-
+                          )
 
 
                         ],)
@@ -151,290 +157,7 @@ class _Home extends State<Home>{
           ),
         ),
     ),
-           Container(
-             width:  400,
-             height:100,
-             padding: EdgeInsets.all(10),
-             child: Card(
-               shape: RoundedRectangleBorder(
-                 borderRadius: BorderRadius.circular(15.0),
-               ),
-               color: Colors.blue,
-               child: Container(
-                 child: Column(
-                   children: [
-                     Row(
-                       children: [
-                         Container(
-                           padding: EdgeInsets.only(left: 10,top: 10),
-                           child: Text("Classic garage",
-                             style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white),
-                           ),
-                         ),
-                         Spacer(flex: 2),
-                         Container(
-                           padding: EdgeInsets.only(right: 10,top: 10),
-                           alignment:Alignment.topRight ,
-                           child: Text("city",
-                               style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: Colors.white)),
-                         ),
-                       ],
-                     ),
-                     Row(
-                       children: [
-                         Container(
 
-                           child: Image.asset(
-                             'images/folder.png',
-                             width: 100,
-                             height: 100,
-                           ),padding: EdgeInsets.all(8),
-                         ),
-                         Container(child: Column(
-                           children: [
-                             Row(
-                               children: [
-                                 Container(child: Text("Mechanical"),),
-                                 Padding(
-                                   padding: const EdgeInsets.only(left:80.0),
-                                   child: Container(child: Text("200 Projects",
-                                     style: TextStyle( color: Colors.white,),
-                                     textAlign: TextAlign.right,),
-                                     alignment: Alignment.topRight,),
-                                 )
-                               ],
-                             ),
-                             Row(children: [
-                               Container(
-
-                                 child: Text("description ",style: TextStyle( color: Colors.white,),
-                                 ),alignment: Alignment.topLeft
-
-                                 ,
-                               )
-                             ],)
-                           ],
-                         ),)
-                       ],
-                     )
-                   ],
-                 ),
-               ),
-             ),
-           ),
-           Container(
-             width:  400,
-             height:100,
-             padding: EdgeInsets.all(10),
-             child: Card(
-               shape: RoundedRectangleBorder(
-                 borderRadius: BorderRadius.circular(15.0),
-               ),
-               color: Colors.blue,
-               child: Container(
-                 child: Column(
-                   children: [
-                     Row(
-                       children: [
-                         Container(
-                           padding: EdgeInsets.only(left: 10,top: 10),
-                           child: Text("Classic garage",
-                             style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white),
-                           ),
-                         ),
-                         Spacer(flex: 2),
-                         Container(
-                           padding: EdgeInsets.only(right: 10,top: 10),
-                           alignment:Alignment.topRight ,
-                           child: Text("city",
-                               style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: Colors.white)),
-                         ),
-                       ],
-                     ),
-                     Row(
-                       children: [
-                         Container(
-
-                           child: Image.asset(
-                             'images/folder.png',
-                             width: 100,
-                             height: 100,
-                           ),padding: EdgeInsets.all(8),
-                         ),
-                         Container(child: Column(
-                           children: [
-                             Row(
-                               children: [
-                                 Container(child: Text("Mechanical"),),
-                                 Padding(
-                                   padding: const EdgeInsets.only(left:80.0),
-                                   child: Container(child: Text("200 Projects",
-                                     style: TextStyle( color: Colors.white,),
-                                     textAlign: TextAlign.right,),
-                                     alignment: Alignment.topRight,),
-                                 )
-                               ],
-                             ),
-                             Row(children: [
-                               Container(
-
-                                 child: Text("description ",style: TextStyle( color: Colors.white,),
-                                 ),alignment: Alignment.topLeft
-
-                                 ,
-                               )
-                             ],)
-                           ],
-                         ),)
-                       ],
-                     )
-                   ],
-                 ),
-               ),
-             ),
-           ),
-           Container(
-             width:  400,
-             height:100,
-             padding: EdgeInsets.all(10),
-             child: Card(
-               shape: RoundedRectangleBorder(
-                 borderRadius: BorderRadius.circular(15.0),
-               ),
-               color: Colors.blue,
-               child: Container(
-                 child: Column(
-                   children: [
-                     Row(
-                       children: [
-                         Container(
-                           padding: EdgeInsets.only(left: 10,top: 10),
-                           child: Text("Classic garage",
-                             style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white),
-                           ),
-                         ),
-                         Spacer(flex: 2),
-                         Container(
-                           padding: EdgeInsets.only(right: 10,top: 10),
-                           alignment:Alignment.topRight ,
-                           child: Text("city",
-                               style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: Colors.white)),
-                         ),
-                       ],
-                     ),
-                     Row(
-                       children: [
-                         Container(
-
-                           child: Image.asset(
-                             'images/folder.png',
-                             width: 100,
-                             height: 100,
-                           ),padding: EdgeInsets.all(8),
-                         ),
-                         Container(child: Column(
-                           children: [
-                             Row(
-                               children: [
-                                 Container(child: Text("Mechanical"),),
-                                 Padding(
-                                   padding: const EdgeInsets.only(left:80.0),
-                                   child: Container(child: Text("200 Projects",
-                                     style: TextStyle( color: Colors.white,),
-                                     textAlign: TextAlign.right,),
-                                     alignment: Alignment.topRight,),
-                                 )
-                               ],
-                             ),
-                             Row(children: [
-                               Container(
-
-                                 child: Text("description ",style: TextStyle( color: Colors.white,),
-                                 ),alignment: Alignment.topLeft
-
-                                 ,
-                               )
-                             ],)
-                           ],
-                         ),)
-                       ],
-                     )
-                   ],
-                 ),
-               ),
-             ),
-           ),
-           Container(
-             width:  400,
-             height:100,
-             padding: EdgeInsets.all(10),
-             child: Card(
-               shape: RoundedRectangleBorder(
-                 borderRadius: BorderRadius.circular(15.0),
-               ),
-               color: Colors.blue,
-               child: Container(
-                 child: Column(
-                   children: [
-                     Row(
-                       children: [
-                         Container(
-                           padding: EdgeInsets.only(left: 10,top: 10),
-                           child: Text("Classic garage",
-                             style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white),
-                           ),
-                         ),
-                         Spacer(flex: 2),
-                         Container(
-                           padding: EdgeInsets.only(right: 10,top: 10),
-                           alignment:Alignment.topRight ,
-                           child: Text("city",
-                               style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: Colors.white)),
-                         ),
-                       ],
-                     ),
-                     Row(
-                       children: [
-                         Container(
-
-                           child: Image.asset(
-                             'images/folder.png',
-                             width: 100,
-                             height: 100,
-                           ),padding: EdgeInsets.all(8),
-                         ),
-                         Container(child: Column(
-                           children: [
-                             Row(
-                               children: [
-                                 Container(child: Text("Mechanical"),),
-                                 Padding(
-                                   padding: const EdgeInsets.only(left:80.0),
-                                   child: Container(child: Text("200 Projects",
-                                     style: TextStyle( color: Colors.white,),
-                                     textAlign: TextAlign.right,),
-                                     alignment: Alignment.topRight,),
-                                 )
-                               ],
-                             ),
-                             Row(children: [
-                               Container(
-
-                                 child: Text("description ",style: TextStyle( color: Colors.white,),
-                                 ),alignment: Alignment.topLeft
-
-                                 ,
-                               )
-                             ],)
-                           ],
-                         ),)
-                       ],
-                     )
-                   ],
-                 ),
-               ),
-             ),
-           ),
 
          ],
 ),
@@ -479,6 +202,7 @@ Widget VerticalRecyclerView(BuildContext context,HomeRepository homeRepository,S
                                ),
                              ),
                              Container(
+                                 margin: EdgeInsets.only(left: 10),
                                  padding: EdgeInsets.only(top: 10),
                                  child: SmoothStarRating(
                                      allowHalfRating: false,
@@ -511,7 +235,7 @@ Widget VerticalRecyclerView(BuildContext context,HomeRepository homeRepository,S
                                child: ClipRRect(
                                  borderRadius: BorderRadius.circular(8.0),
                                  child: Image.network(
-                                   'https://e-commerce-dev.intcore.net/uploads/products/MItqele2aABSzQ0Qf9aDiKiayL2RixiY6TCit5DK.jpeg',
+                                   list[index].avatar,
                                    width: 100,
                                    height: 100,
                                  ),
@@ -521,6 +245,8 @@ Widget VerticalRecyclerView(BuildContext context,HomeRepository homeRepository,S
                              Container(
                                padding: EdgeInsets.only(top: 10),
                                child: Column(
+                                 mainAxisAlignment: MainAxisAlignment.start,
+                                 crossAxisAlignment: CrossAxisAlignment.start,
                                  children: [
                                    Container(
                                      child: Container(
@@ -553,10 +279,7 @@ Widget VerticalRecyclerView(BuildContext context,HomeRepository homeRepository,S
                                    ),
                                    Row(
                                      children: [
-                                       Container(
-                                         //error is here
-                                         //    child: Text("description ",style: TextStyle( color: Colors.white,),
-                                       )
+                                       MultiLine(list[index].description, 3, 150, Color(0xff888888))
                                      ],
                                    )
                                  ],
