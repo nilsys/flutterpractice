@@ -5,12 +5,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutterpractice/Model/HomeResponse.dart';
 import 'package:flutterpractice/Model/login/ErrorLoginResponse.dart';
 import 'package:flutterpractice/Model/login/LoginResponse.dart';
+import 'package:flutterpractice/cache/TokenCache.dart';
 import 'package:flutterpractice/ui/Home.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Network {
- String urlAer= "https://aerbag-dev.intcore.net/api/";
+ String urlAer= "https://aerbag-dev.intcore.net/api";
 /*
   Future<List<Data>> getNearBy() async {
     try {
@@ -39,13 +40,8 @@ class Network {
   }
 */
 
-  String token;
   Network(){
-    print("rrrrr");
-    getToken().then((value) {
-      token = value ;
-    }
-    );
+
   }
 
 
@@ -112,7 +108,7 @@ class Network {
     }
   }
   Future<dynamic> get(String endPoint) async {
-    var url = urlAer + endPoint;
+    var url = urlAer+"/"+ endPoint;
     var response = await http.get(url, headers: updateHeaders());
     if (response.statusCode==200){
       print("success");
@@ -124,20 +120,16 @@ class Network {
   }
 
   Map<String,String> updateHeaders() {
-    print(token);
+  var token = TokenCache.instance.getAccessToken();
+  print(token);
     return {
       'Content-Type': 'application/json',
       'Accept':'application/json',
-      'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjAxNWUyMTgxNzc2NjVkODUwZWYzZWQ0NWMyMTE5ZTBkMjQ1ZTZlMDlmMGI4NGM4OTYwMTBjMDlkODI1MjEzYTZjZDcwZjVkOGU1NDNjM2RhIn0.eyJhdWQiOiIxIiwianRpIjoiMDE1ZTIxODE3NzY2NWQ4NTBlZjNlZDQ1YzIxMTllMGQyNDVlNmUwOWYwYjg0Yzg5NjAxMGMwOWQ4MjUyMTNhNmNkNzBmNWQ4ZTU0M2MzZGEiLCJpYXQiOjE2MDUwODYxNTEsIm5iZiI6MTYwNTA4NjE1MSwiZXhwIjoxNjM2NjIyMTUxLCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.PV5Q9dxqcC8wBdfDYx8xCvondoi6j79IrvbDCuYufWZ7eXJ5LzC0HB1zR_uxYLgSLwLYY9i_n0wCsrast5d1BUoR2ODdW5wDu-Y11_uOX7q72Jvhc9MyJ7fK5l_0kDXegSrtMmh_8yeI5hbD4YoGbiwT0L-b1N2SvWrQOvtnyf347H18jB1FNoiuI87T_P_3RqPgMFCLgQkk0AHXrwdqeya25MuUsIKsiaKdl5fTKdWQLexyDXaQgyvZ2Ona5kbsC77avuRrX1x7XxYdQhIuZi3lYsN8ZoCyiFS9ry5Sm4QyO-8VCcgYv5FjOo8B1plm3uyVN7Snkjbf41hIA9nn89fXGqGRPOrVagsQMBlK-YTD6M0eIPODbCxIohWlEM0PeXNwAZyOOjHh068zXnQSaYYx7F_0ZxmOze8QbHxm1JmvDocrHeALGaWQpPce_8HGKxMLCerW5AvcZR4jxNdvG9RVSkPCvWdA499APKsEdRhJ2nh5HWOEA0ow-pF57K03VD8ubZ3CE8g7a-XsTsQJGOejVZoSYZe31X4snFl9Tehvi-0WkmoWPNiUwzSbyMUyyXv-6H8hOX9pnwtdnN_GB5gfOa4HufJB_5UXh6oa9IaNk0LB3sbncy5lS6-av3rWNl9XCgNLYtgEq-cNXPRE0GWBG-k5EYNUGPaaBPXwHoI',
+      'Authorization': 'Bearer $token',
       'X-localization':'en'
     };
   }
 
-  Future<String> getToken() async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    var token = await prefs.getString('Token');
-    return token;
-  }
 
 }
 

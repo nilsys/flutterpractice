@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterpractice/Validation.dart';
+import 'package:flutterpractice/cache/TokenCache.dart';
 import 'package:flutterpractice/component/CardBox.dart';
 import 'package:flutterpractice/network/Network.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -146,14 +147,17 @@ class _SignIn extends State<SignIn>{
                                                     .getInstance();
 
                                             await prefs.setBool('isUser', true);
-                                            await prefs.setString(
-                                                'Token', value.token);
-                                            await prefs.setString(
-                                                'UserName', value.user.name);
+                                            print(value.token);
+                                            TokenCache.instance.setAccessToken(value.token);
+
+                                            // await prefs.setString(
+                                            //     'Token', value.token);
+                                            // await prefs.setString(
+                                            //     'UserName', value.user.name);
 
                                             if (value.user.type=="serviceProvider") {
 
-                                            } else if (value.user.type=="customer"){
+                                            } else if (value.user.type=="customer") {
                                               //go to client home
                                               Navigator.of(context)
                                                   .pushReplacement(
@@ -161,9 +165,7 @@ class _SignIn extends State<SignIn>{
                                                       builder: (context) =>
                                                       new MainScreen()));
                                             }
-                                          }).catchError(handleError).then((value) {
-                                          print(value.toString());
-                                              });
+                                          }).catchError(handleError());
                                         }
                                       },
                                     child: Text('Login'),
