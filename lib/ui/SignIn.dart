@@ -150,10 +150,6 @@ class _SignIn extends State<SignIn>{
                                             print(value.token);
                                             TokenCache.instance.setAccessToken(value.token);
 
-                                            // await prefs.setString(
-                                            //     'Token', value.token);
-                                            // await prefs.setString(
-                                            //     'UserName', value.user.name);
 
                                             if (value.user.type=="serviceProvider") {
 

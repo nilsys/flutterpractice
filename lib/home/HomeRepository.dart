@@ -1,4 +1,3 @@
-import 'package:flutterpractice/Model/HomeResponse.dart';
 import 'package:flutterpractice/Model/NearbyResponse.dart';
 import 'package:flutterpractice/network/Network.dart';
 import 'package:http/http.dart';
@@ -12,9 +11,11 @@ class HomeRepository {
     network = Network();
   }
 
-  Future<List<Provider>> getNearby(String endpoint) async {
+  Future<NearbyResponse> getNearby(String endpoint) async {
     var jsonData = await network.get(endpoint);
-    NearbyResponse homeResponse = await NearbyResponse.fromJson(jsonData);
-    return homeResponse.provider;
+    NearbyResponse nearbyResponse = await NearbyResponse.fromJson(jsonData);
+    print(nearbyResponse.provider[0].name);
+    print(nearbyResponse.provider[0].location);
+    return nearbyResponse;
   }
 }

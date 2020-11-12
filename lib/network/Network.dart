@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutterpractice/Model/HomeResponse.dart';
 import 'package:flutterpractice/Model/login/ErrorLoginResponse.dart';
 import 'package:flutterpractice/Model/login/LoginResponse.dart';
 import 'package:flutterpractice/cache/TokenCache.dart';
@@ -45,31 +44,6 @@ class Network {
   }
 
 
-  Future<List<Data>> getNearBy(String token) async {
-    var url ="https://aerbag-dev.intcore.net/api/users/categories/1/lat/37.33233141/long/-122.0312186?page=1";
-    var response = await http.get(url, headers: <String, String>{
-      'Content-Type': 'application/json',
-      'Accept':'application/json',
-      'Authorization': 'Bearer $token',
-      'X-localization':'en'
-    },);
-
-    var jsondata=json.decode(response.body);
-    if (response.statusCode == 200) {
-      // If the server did return a 200 OK response,
-      // then parse the JSON.
-
-      HomeResponse homeResponse=HomeResponse.fromJson(jsondata);
-      print('success ${homeResponse.data[0].email}');
-      return homeResponse.data;
-    } else {
-      // If the server did not return a 200 OK response,
-      // then throw an exception.
-      int statusCode = HttpStatus.ok;
-      print(statusCode);
-      throw Exception('Error getting near by');
-    }
-  }
 
 
 

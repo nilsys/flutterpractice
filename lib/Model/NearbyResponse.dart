@@ -126,9 +126,9 @@ class Provider {
     //     comments.add(new Null.fromJson(v));
     //   });
     // }
-    location = json['location'] != null
-        ? new Location.fromJson(json['location'])
-        : null;
+    if(json['location'] != null){
+      location = new Location.fromJson(json['location']);
+    }
     notificationSettings = json['notification_settings'] != null
         ? new NotificationSettings.fromJson(json['notification_settings'])
         : null;
@@ -351,14 +351,32 @@ class Location {
         this.updatedAt});
 
   Location.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    address = json['address'];
-    lat = json['lat'];
-    long = json['long'];
-    userId = json['user_id'];
-    state = json['state'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
+    if (this.id != null){
+      id = json['id'];
+    }
+    if (this.address != null){
+      address = json['address'];
+    }
+
+    if (this.lat != null){
+      lat = json['lat'];
+    }
+    if (this.long != null){
+        long = json['long'];
+    }
+    if (this.userId != null){
+      userId = json['user_id'];
+    }
+
+    if (this.state != null){
+      state = json['state'];
+    }
+    if (this.createdAt != null){
+      createdAt = json['created_at'];
+    }
+    if (this.createdAt != null){
+      updatedAt = json['updated_at'];
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -369,6 +387,7 @@ class Location {
     data['long'] = this.long;
     data['user_id'] = this.userId;
     data['state'] = this.state;
+
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
     return data;

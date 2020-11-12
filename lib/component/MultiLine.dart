@@ -3,15 +3,11 @@ import 'package:flutter/cupertino.dart';
 
 class MultiLine extends Container{
 
- // MultiLine(String text,int Maxline, int widthOfLine);
-
-
   MultiLine(String text,
       int maxline,
       double widthOfLine,
       Color textColor
-      )
-      : super(
+      ): super(
       width: widthOfLine,
       child:Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -23,12 +19,5 @@ class MultiLine extends Container{
             maxLines: maxline ,
             style: TextStyle( color:  textColor,),),
         ],
-      )
-
-
-  );
-
-
-
-
+      ));
 }
