@@ -170,7 +170,7 @@ class _SignIn extends State<SignIn> {
                                                   .pushReplacement(
                                                   new MaterialPageRoute(
                                                       builder: (context) =>
-                                                      new MainScreen()));
+                                                      new MainScreens()));
                                             }
                                           }).catchError(handleError());
                                         }
@@ -234,7 +234,7 @@ class _SignIn extends State<SignIn> {
                                                   .pushReplacement(
                                                   new MaterialPageRoute(
                                                       builder: (context) =>
-                                                      new MainScreen()));
+                                                      new SignUpType(userDetails: value)));
                                             }
                                           }
                                           ).catchError(handleGoogleLoginError);
@@ -277,7 +277,7 @@ class _SignIn extends State<SignIn> {
                                 .push(
                                 new MaterialPageRoute(
                                     builder: (context) =>
-                                    new SignUp()));
+                                    new SignUpType()));
                           },
                           child: Text('SIGN UP'),
                           color: Colors.white,
@@ -302,7 +302,7 @@ class _SignIn extends State<SignIn> {
     if (_user == true) {
 
       Navigator.of(context).pushReplacement(
-          new MaterialPageRoute(builder: (context) => new MainScreen()));
+          new MaterialPageRoute(builder: (context) => new MainScreens()));
     }
     // prefs.setBool('isUser', true);
     // bool _seen = (prefs.getBool('isUser'));

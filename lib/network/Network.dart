@@ -86,6 +86,5 @@ class Network {
      'Content-Type': 'application/json',
    };
  }
-
 }
 

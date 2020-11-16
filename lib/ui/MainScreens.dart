@@ -8,7 +8,7 @@ import 'Home.dart';
 import 'Login.dart';
 import '../auth/SignIn.dart';
 
-class _MainScreen extends State<MainScreen> {
+class _MainScreen extends State<MainScreens> {
   var _selectedIndex ;
   List<Widget> _Screens=[Home(),ClassicGarage(),SignIn()];
   PageController _pageController=PageController();
@@ -68,7 +68,7 @@ class _MainScreen extends State<MainScreen> {
     );
   }
 }
-class MainScreen extends StatefulWidget{
+class MainScreens extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState

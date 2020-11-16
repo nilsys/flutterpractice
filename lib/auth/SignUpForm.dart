@@ -1,8 +1,10 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterpractice/Validation.dart';
 import 'package:flutterpractice/auth/AuthRepository.dart';
+import 'package:flutterpractice/auth/SignUpType.dart';
 import 'package:flutterpractice/cache/TokenCache.dart';
 import 'package:flutterpractice/cache/UserCache.dart';
 import 'package:flutterpractice/component/CardBox.dart';
@@ -11,11 +13,17 @@ import 'package:flutterpractice/network/Network.dart';
 import 'package:flutterpractice/ui/MainScreens.dart';
 
 class  SignUpForm extends StatefulWidget{
+  User userDetails;
+  String type;
+
+  SignUpForm({Key key, this.userDetails,this.type}):super(key: key);
+
+
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
 
-    return _SignUpForm();
+    return _SignUpForm(userDetails,type);
   }
 
 }
@@ -26,6 +34,15 @@ class _SignUpForm extends State<SignUpForm>{
   var formkey=GlobalKey<FormState>();
   var gSignIn = GoogleLogin();
   var auth = AuthRepository();
+  User userDetails;
+  String type;
+
+  _SignUpForm(User userDetails,String type){
+    this.type=type;
+    this.userDetails=userDetails;
+    print("aaaaa  "+type);
+    print("aaaaa  "+userDetails.email);
+  }
 
   TextEditingController nameController     = new TextEditingController();
   TextEditingController emailController    = new TextEditingController();
@@ -176,7 +193,7 @@ class _SignUpForm extends State<SignUpForm>{
                                       .pushReplacement(
                                       new MaterialPageRoute(
                                           builder: (context) =>
-                                          new MainScreen()));
+                                          new MainScreens()));
                                 }
     }).catchError((Object error) {
 
@@ -243,7 +260,7 @@ class _SignUpForm extends State<SignUpForm>{
                                       .pushReplacement(
                                       new MaterialPageRoute(
                                           builder: (context) =>
-                                          new MainScreen()));
+                                          new MainScreens()));
                                 }
                               }
                               ).catchError(handleGoogleLoginError);

@@ -1,21 +1,30 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterpractice/Model/login/UserResponse.dart';
 import 'package:flutterpractice/auth/SignUpForm.dart';
-import 'package:flutterpractice/component/CardBox.dart';
+import 'package:firebase_auth/firebase_auth.dart' as eos;
 
 
+class SignUpType extends StatefulWidget{
 
+  eos.User userDetails;
+  SignUpType({Key key, this.userDetails}):super(key: key);
 
-class SignUp extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return _SignUp();
+    return _SignUpType(userDetails);
   }
 
 }
 
-class _SignUp extends State{
+class _SignUpType extends State{
+   eos.User userDetails;
+   var type;
+   _SignUpType(eos.User user){
+        this.userDetails=user;
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -41,9 +50,10 @@ class _SignUp extends State{
          Container(
            child: GestureDetector(child: FittedBox(child: Image.asset('images/client.png',height: 150,),fit: BoxFit.fill,),
            onTap:(){
+             type="customer";
              Navigator.push(
                context,
-               MaterialPageRoute(builder: (context) => SignUpForm()),
+               MaterialPageRoute(builder: (context) => SignUpForm(userDetails: userDetails,type: type)),
              );
            }
 
@@ -51,7 +61,10 @@ class _SignUp extends State{
            ),
          ),
          Container(
-           child: Image.asset('images/Workshop.png',height: 150),
+           child: GestureDetector(child: Image.asset('images/Workshop.png',height: 150),
+           onTap: (){
+             type="workshop";
+           },),
            ),
        ],
      ),
