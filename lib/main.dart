@@ -1,11 +1,13 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterpractice/cache/AppCache.dart';
 import 'package:flutterpractice/ui/SplashScreen.dart';
 
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  AppCache.instance.init().then((value) {
+  await Firebase.initializeApp();
+  AppCache.instance.init().then((value)  {
     runApp(MaterialApp(home:splashScreen(),debugShowCheckedModeBanner: false));
   });
 }
