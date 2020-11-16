@@ -8,9 +8,9 @@ class GoogleLogin {
   GoogleSignIn _googleSignIn = new GoogleSignIn();
 
   Future<User> signIn(BuildContext context) async {
-    Scaffold.of(context).showSnackBar(new SnackBar(
-      content: new Text('Sign in'),
-    ));
+    // Scaffold.of(context).showSnackBar(new SnackBar(
+    //   content: new Text('Sign in'),
+    // ));
 
     final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
     final GoogleSignInAuthentication googleAuth = await googleUser

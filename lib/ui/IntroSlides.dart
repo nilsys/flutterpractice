@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterpractice/ui/MainScreens.dart';
-import 'package:flutterpractice/ui/SignIn.dart';
-import 'package:flutterpractice/ui/SignUp.dart';
+import 'file:///C:/Users/intcore-013/AndroidStudioProjects/flutterpractice/lib/auth/SignUpType.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../auth/SignIn.dart';
 
 class IntroSlides extends StatefulWidget {
   IntroSlides({Key key}) : super(key: key);

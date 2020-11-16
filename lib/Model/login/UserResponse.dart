@@ -1,12 +1,12 @@
-class LoginResponse {
+class UserResponse {
   User user;
   String token;
   String lang;
   String deviceToken;
 
-  LoginResponse({this.user, this.token, this.lang, this.deviceToken});
+  UserResponse({this.user, this.token, this.lang, this.deviceToken});
 
-  LoginResponse.fromJson(Map<String, dynamic> json) {
+  UserResponse.fromJson(Map<String, dynamic> json) {
     user = json['user'] != null ? new User.fromJson(json['user']) : null;
     token = json['token'];
     lang = json['lang'];

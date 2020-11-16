@@ -3,10 +3,10 @@ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterpractice/ui/ClassicGarage.dart';
-import 'package:flutterpractice/ui/SignIn.dart';
 
 import 'Home.dart';
 import 'Login.dart';
+import '../auth/SignIn.dart';
 
 class _MainScreen extends State<MainScreen> {
   var _selectedIndex ;

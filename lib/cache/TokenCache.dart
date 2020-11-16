@@ -4,7 +4,7 @@ import 'package:flutterpractice/cache/AppCache.dart';
 
 class TokenCache{
 
-  static final TokenCache _instance=TokenCache();
+  static final TokenCache _instance= TokenCache();
 
   static TokenCache get instance{
     return _instance;

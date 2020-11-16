@@ -6,8 +6,10 @@ import 'package:flutterpractice/ui/SplashScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  AppCache.instance.init().then((value)  {
-    runApp(MaterialApp(home:splashScreen(),debugShowCheckedModeBanner: false));
-  });
-}
+    await Firebase.initializeApp();
+    AppCache.instance.init().then((value) {
+      runApp(
+          MaterialApp(home: splashScreen(), debugShowCheckedModeBanner: false));
+    });
+
+  }

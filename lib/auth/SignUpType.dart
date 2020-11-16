@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterpractice/auth/SignUpForm.dart';
 import 'package:flutterpractice/component/CardBox.dart';
 
 
@@ -38,20 +39,25 @@ class _SignUp extends State{
            child: Text("SIGN UP AS",style: TextStyle(fontSize: 32,fontWeight: FontWeight.bold),),
          ),
          Container(
-           child: FittedBox(child: Image.asset('images/client.png',height: 150,),fit: BoxFit.fill,),
-         ),
-         Container(
-           child: Image.asset('images/Workshop.png',height: 150,),
+           child: GestureDetector(child: FittedBox(child: Image.asset('images/client.png',height: 150,),fit: BoxFit.fill,),
+           onTap:(){
+             Navigator.push(
+               context,
+               MaterialPageRoute(builder: (context) => SignUpForm()),
+             );
+           }
+
 
            ),
-
-
+         ),
+         Container(
+           child: Image.asset('images/Workshop.png',height: 150),
+           ),
        ],
      ),
-
    );
-
-
   }
+
+
 
 }

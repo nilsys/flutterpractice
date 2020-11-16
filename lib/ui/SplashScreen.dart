@@ -1,16 +1,9 @@
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterpractice/ui/IntroSlides.dart';
-import 'package:flutterpractice/ui/MainScreens.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:splashscreen/splashscreen.dart';
-import 'package:after_layout/after_layout.dart';
-import 'package:firebase_core/firebase_core.dart';
-
-
-import 'SignIn.dart';
+import '../auth/SignIn.dart';
 
 class splashScreen extends StatefulWidget{
   @override
@@ -34,13 +27,8 @@ class _SplashScreen extends State<splashScreen>  {
     image: Image.asset("images/logo.png").image,
       fit: BoxFit.contain,
     ),),
-
     ),
-
     );
-
-
-
   }
 
   @override
