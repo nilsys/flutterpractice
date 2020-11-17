@@ -10,7 +10,7 @@ import '../auth/SignIn.dart';
 
 class _MainScreen extends State<MainScreens> {
   var _selectedIndex ;
-  List<Widget> _Screens=[Home(),ClassicGarage(),SignIn()];
+  List<Widget> _Screens=[Home(),ClassicGarage(),Home()];
   PageController _pageController=PageController();
 
   // This widget is the root of your application.

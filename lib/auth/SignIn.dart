@@ -248,19 +248,25 @@ class _SignIn extends State<SignIn> {
 
                                           gSignIn.signIn(context).then((userDetails) {
                                             if (userDetails.uid != null) {
-                                              auth.signInSocial("social-login", {
+                                              auth.signInSocial("social-login",
+                                                  {
+                                                    'Accept':'application/json',
+                                                    'Content-Type': 'application/json',
+                                                  },
+                                                  {
                                                     'social_id': userDetails.uid,
                                                     'social_type': "google",
                                                   }).then((loginGoogle) {
                                                 if ( loginGoogle.user!=null) {
-
-                                                      TokenCache.instance.setAccessToken(loginGoogle.token);
-                                                      UserCache.instance.setUserCache(true);
-                                                      UserCache.instance.setUserType(loginGoogle.user.type);
+                                                  print('');
+                                                  TokenCache.instance.setAccessToken(loginGoogle.token);
+                                                  UserCache.instance.setUserCache(true);
+                                                  UserCache.instance.setUserType(loginGoogle.user.type);
 
                                                       if (loginGoogle.user.type == "serviceProvider") {}
                                                       else if (loginGoogle.user.type == "customer") {
                                                         //go to client home
+
                                                         Navigator.of(context)
                                                             .pushReplacement(
                                                             new MaterialPageRoute(
@@ -269,7 +275,8 @@ class _SignIn extends State<SignIn> {
                                                                 new MainScreens()));
                                                       }
                                                     }
-                                                  }).catchError(onErrorGoogle(userDetails));
+                                                  });
+                                                  //.catchError(onErrorGoogle(userDetails));
                                             }
                                           });
 
@@ -369,7 +376,6 @@ class _SignIn extends State<SignIn> {
   }
 
   Function onErrorGoogle(User userDetails) {
-    print('Google email  isnot register '+userDetails.email);
     Navigator.of(context)
         .pushReplacement(
         new MaterialPageRoute(

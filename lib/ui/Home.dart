@@ -1,6 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterpractice/Model/NearbyResponse.dart';
+import 'package:flutterpractice/auth/AuthRepository.dart';
+import 'package:flutterpractice/auth/SignIn.dart';
+import 'package:flutterpractice/cache/AppCache.dart';
+import 'package:flutterpractice/cache/TokenCache.dart';
+import 'package:flutterpractice/cache/UserCache.dart';
 import 'package:flutterpractice/component/CardBox.dart';
 import 'package:flutterpractice/component/MultiLine.dart';
 import 'package:flutterpractice/home/HomeRepository.dart';
@@ -20,7 +25,7 @@ class Home extends StatefulWidget{
 }
 
 class _Home extends State<Home>{
-  var netWork=new Network();
+  var auth=new AuthRepository();
   var homeRepository=HomeRepository();
   var token;
   @override
@@ -32,7 +37,22 @@ class _Home extends State<Home>{
   @override
   Widget build(BuildContext context) {
     return  Scaffold (
-        appBar: AppBar(title: Text("Home")),
+        appBar: AppBar(title: Text("Home"),
+          actions: <Widget>[
+            PopupMenuButton<String>(
+              onSelected: handleClick,
+              itemBuilder: (BuildContext context) {
+                return {'Logout'}.map((String choice) {
+                  return PopupMenuItem<String>(
+                    value: choice,
+                    child: Text(choice),
+                  );
+                }).toList();
+              },
+            ),
+          ],
+        ),
+
         body:
         Container(child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -570,6 +590,26 @@ class _Home extends State<Home>{
       );
 
 
+
+  void handleClick(String value) {
+    var token = TokenCache.instance.getAccessToken();
+    auth.logout("logout",{
+      'Accept':'application/json',
+      'Authorization': 'Bearer $token',
+    }).then((value) {
+      print("LogOutt"+value.message.toString());
+      UserCache.instance.setUserCache(false);
+
+      Navigator.of(context)
+          .pushReplacement(
+          new MaterialPageRoute(
+              builder: (
+                  context) =>
+              new SignIn()));
+
+    });
+    
+  }
 }
 
 

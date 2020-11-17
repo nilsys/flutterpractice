@@ -170,6 +170,11 @@ class _SignUpForm extends State<SignUpForm>{
                     if (userDetails==null) {
                       await auth.signUp("register",
                           {
+                            'Accept':'application/json',
+                            'Content-Type': 'application/json',
+                          },
+
+                          {
                             'name': nameController.text,
                             'email': emailController.text,
                             "password": passwordController.text,
@@ -203,6 +208,10 @@ class _SignUpForm extends State<SignUpForm>{
                       ////////////////
                     }else {
                       await auth.registerSocial("social-register",
+                          {
+                            'Accept':'application/json',
+                            'Content-Type': 'application/json',
+                          },
                           {
                             'name' : nameController.text,
                             'email': emailController.text,
@@ -297,7 +306,12 @@ class _SignUpForm extends State<SignUpForm>{
 
                               gSignIn.signIn(context).then((value) {
                                 if (value.uid != null) {
-                                  auth.signInSocial("social-login",{
+                                  auth.signInSocial("social-login",
+                                      {
+                                        'Accept':'application/json',
+                                        'Content-Type': 'application/json',
+                                      },
+                                      {
                                     'social_id' : value.uid,
                                     'social_type' : "google",
                                   }).then((value) {

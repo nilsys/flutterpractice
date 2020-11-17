@@ -52,9 +52,9 @@ class Network {
     }
   }
 
-  Future<dynamic> post(String endPoint,Map<String, String> body) async{
+  Future<dynamic> post(String endPoint,Map<String, String> headers,Map<String, String> body) async{
     var url = urlAer+"/"+ endPoint;
-    http.Response response = await http.post(url, headers: postHeaders() , body: jsonEncode(body) );
+    http.Response response = await http.post(url, headers: headers , body: jsonEncode(body) );
     if (response.statusCode==200){
       print("Post success");
       return json.decode(response.body);
