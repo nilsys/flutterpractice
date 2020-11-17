@@ -18,12 +18,12 @@ class  SignUpForm extends StatefulWidget{
 
   SignUpForm({Key key, this.userDetails,this.type}):super(key: key);
 
-
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
 
     return _SignUpForm(userDetails,type);
+
   }
 
 }
@@ -36,18 +36,23 @@ class _SignUpForm extends State<SignUpForm>{
   var auth = AuthRepository();
   User userDetails;
   String type;
-
-  _SignUpForm(User userDetails,String type){
-    this.type=type;
-    this.userDetails=userDetails;
-    print("aaaaa  "+type);
-    print("aaaaa  "+userDetails.email);
-  }
-
   TextEditingController nameController     = new TextEditingController();
   TextEditingController emailController    = new TextEditingController();
   TextEditingController phoneController    = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
+
+
+  _SignUpForm(User userDetails,String type){
+    this.type=type;
+    this.userDetails=userDetails;
+
+    //fill data when sign in google
+    if (userDetails!=null){
+      nameController.text= userDetails.displayName ;
+      emailController.text= userDetails.email ;
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -162,42 +167,78 @@ class _SignUpForm extends State<SignUpForm>{
                               // If the form is valid, display a snackbar. In the real world,
                               // you'd often call a server or save the information in a database.
 
+                    if (userDetails==null) {
+                      await auth.signUp("register",
+                          {
+                            'name': nameController.text,
+                            'email': emailController.text,
+                            "password": passwordController.text,
+                            "type": 'customer',
+                            "phone": phoneController.text,
+                            "lat": "159123",
+                            'lng': "147852"
+                          }
 
-                            await auth.signUp("register",
-                               {
-                                 'name': nameController.text,
-                                 'email':emailController.text,
-                                  "password":passwordController.text,
-                                  "type":'customer',
-                                  "phone":phoneController.text,
-                                  "lat":"159123",
-                                 'lng':"147852"
-                                }
+                      ).then((value) async {
+                        //  await prefs.setBool('isUser', true);
+                        //   print(value.token);
+                        TokenCache.instance.setAccessToken(
+                            value.token);
+                        UserCache.instance.setUserCache(true);
+                        UserCache.instance.setUserType(value.user.type);
 
-                            ).then((value) async {
+                        if (value.user.type == "serviceProvider") {
+                          //continue registeration
+
+                        } else if (value.user.type == "customer") {
+                          //go to client home
+                          Navigator.of(context)
+                              .pushReplacement(
+                              new MaterialPageRoute(
+                                  builder: (context) =>
+                                  new MainScreens()));
+                        }
+                      }).catchError((Object error) {});
+
+                      ////////////////
+                    }else {
+                      await auth.registerSocial("social-register",
+                          {
+                            'name' : nameController.text,
+                            'email': emailController.text,
+                            "password": passwordController.text,
+                            "type" : type,
+                            "phone": phoneController.text,
+                            "social_type"  : "google",
+                            'social_id'    : userDetails.uid,
+                          }
+
+                      ).then((value) async {
+                        //  await prefs.setBool('isUser', true);
+                        //   print(value.token);
+                        TokenCache.instance.setAccessToken(
+                            value.token);
+                        UserCache.instance.setUserCache(true);
+                        UserCache.instance.setUserType(value.user.type);
+
+                        if (value.user.type == "serviceProvider") {
+                          //continue registeration
+
+                        } else if (value.user.type == "customer") {
+                          //go to client home
+                          Navigator.of(context)
+                              .pushReplacement(
+                              new MaterialPageRoute(
+                                  builder: (context) =>
+                                  new MainScreens()));
+                        }
+                      }).catchError((Object error) {});
 
 
-                                //  await prefs.setBool('isUser', true);
-                                //   print(value.token);
-                                TokenCache.instance.setAccessToken(
-                                    value.token);
-                                UserCache.instance.setUserCache(true);
-                                UserCache.instance.setUserType(value.user.type);
+                    }
 
-                                if (value.user.type == "serviceProvider") {
-                                  //continue registeration
 
-                                } else if (value.user.type == "customer") {
-                                  //go to client home
-                                  Navigator.of(context)
-                                      .pushReplacement(
-                                      new MaterialPageRoute(
-                                          builder: (context) =>
-                                          new MainScreens()));
-                                }
-    }).catchError((Object error) {
 
-                            });
 
                             }
                           },
@@ -256,11 +297,17 @@ class _SignUpForm extends State<SignUpForm>{
 
                               gSignIn.signIn(context).then((value) {
                                 if (value.uid != null) {
-                                  Navigator.of(context)
-                                      .pushReplacement(
-                                      new MaterialPageRoute(
-                                          builder: (context) =>
-                                          new MainScreens()));
+                                  auth.signInSocial("social-login",{
+                                    'social_id' : value.uid,
+                                    'social_type' : "google",
+                                  }).then((value) {
+                                    Navigator.of(context)
+                                        .pushReplacement(
+                                        new MaterialPageRoute(
+                                            builder: (context) =>
+                                            new MainScreens()));
+                                  });
+
                                 }
                               }
                               ).catchError(handleGoogleLoginError);

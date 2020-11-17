@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterpractice/Validation.dart';
@@ -12,6 +13,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../ui/MainScreens.dart';
+import 'AuthRepository.dart';
 
 
 class SignIn extends StatefulWidget{
@@ -27,6 +29,7 @@ class _SignIn extends State<SignIn> {
 
   var validation = Validation();
   var network = Network();
+  var auth= AuthRepository();
   var gSignIn = GoogleLogin();
   final _formKey = GlobalKey<FormState>();
   var email, password;
@@ -228,16 +231,49 @@ class _SignIn extends State<SignIn> {
                                           //   // you'd often call a server or save the information in a database.
                                           // }
 
-                                          gSignIn.signIn(context).then((value) {
-                                            if (value.uid != null) {
-                                              Navigator.of(context)
-                                                  .pushReplacement(
-                                                  new MaterialPageRoute(
-                                                      builder: (context) =>
-                                                      new SignUpType(userDetails: value)));
+
+          //   gSignIn.signIn(context).then((value) {
+          // if (value.uid != null) {
+          //   auth.signInSocial("social-login", {
+          //     'social_id': value.uid,
+          //     'social_type': "google",
+          //   }).then((value) {
+          //     Navigator.of(context)
+          //         .pushReplacement(
+          //         new MaterialPageRoute(
+          //             builder: (context) =>
+          //             new SignUpType(userDetails: value)));
+          //   });
+          //
+
+                                          gSignIn.signIn(context).then((userDetails) {
+                                            if (userDetails.uid != null) {
+                                              auth.signInSocial("social-login", {
+                                                    'social_id': userDetails.uid,
+                                                    'social_type': "google",
+                                                  }).then((loginGoogle) {
+                                                if ( loginGoogle.user!=null) {
+
+                                                      TokenCache.instance.setAccessToken(loginGoogle.token);
+                                                      UserCache.instance.setUserCache(true);
+                                                      UserCache.instance.setUserType(loginGoogle.user.type);
+
+                                                      if (loginGoogle.user.type == "serviceProvider") {}
+                                                      else if (loginGoogle.user.type == "customer") {
+                                                        //go to client home
+                                                        Navigator.of(context)
+                                                            .pushReplacement(
+                                                            new MaterialPageRoute(
+                                                                builder: (
+                                                                    context) =>
+                                                                new MainScreens()));
+                                                      }
+                                                    }
+                                                  }).catchError(onErrorGoogle(userDetails));
                                             }
-                                          }
-                                          ).catchError(handleGoogleLoginError);
+                                          });
+
+
                                         },
                                         color: Colors.white,
                                         label: Text(
@@ -300,27 +336,9 @@ class _SignIn extends State<SignIn> {
   void checkUser(BuildContext context) {
     bool _user = UserCache.instance.getUserCache();
     if (_user == true) {
-
       Navigator.of(context).pushReplacement(
           new MaterialPageRoute(builder: (context) => new MainScreens()));
     }
-    // prefs.setBool('isUser', true);
-    // bool _seen = (prefs.getBool('isUser'));
-    //  print("oooo2"+_seen.toString());
-
-    // SharedPreferences prefs = await SharedPreferences.getInstance();
-    // bool _user = (prefs.getBool('isUser') ?? false);
-    //
-    // print("isUser" + _user.toString());
-    // print('asdasdasdadasd');
-    // if (_user == true) {
-    //   Navigator.of(context).pushReplacement(
-    //       new MaterialPageRoute(builder: (context) => new MainScreen()));
-    // } else {
-    //   // await prefs.setBool('isUser', true);
-    //   // bool _seen = (prefs.getBool('isUser'));
-    //   // print("oooo2"+_seen.toString());
-    // }
   }
 
   void createToast() {
@@ -348,6 +366,15 @@ class _SignIn extends State<SignIn> {
   Function handleGoogleLoginError() {
   //  createToast();
     print('Email is wrong ');
+  }
+
+  Function onErrorGoogle(User userDetails) {
+    print('Google email  isnot register '+userDetails.email);
+    Navigator.of(context)
+        .pushReplacement(
+        new MaterialPageRoute(
+            builder: (context) =>
+            new SignUpType(userDetails: userDetails,)));
   }
 
 }

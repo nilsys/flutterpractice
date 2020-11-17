@@ -13,6 +13,7 @@ class SignUpType extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
+
     return _SignUpType(userDetails);
   }
 
@@ -23,6 +24,8 @@ class _SignUpType extends State{
    var type;
    _SignUpType(eos.User user){
         this.userDetails=user;
+        // print("signuptype"+userDetails.email);
+        // print("signuptype"+userDetails.displayName);
   }
 
   @override
@@ -51,7 +54,7 @@ class _SignUpType extends State{
            child: GestureDetector(child: FittedBox(child: Image.asset('images/client.png',height: 150,),fit: BoxFit.fill,),
            onTap:(){
              type="customer";
-             Navigator.push(
+             Navigator.pushReplacement(
                context,
                MaterialPageRoute(builder: (context) => SignUpForm(userDetails: userDetails,type: type)),
              );
@@ -70,7 +73,5 @@ class _SignUpType extends State{
      ),
    );
   }
-
-
 
 }

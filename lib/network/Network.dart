@@ -1,13 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutterpractice/Model/login/ErrorLoginResponse.dart';
 import 'package:flutterpractice/Model/login/UserResponse.dart';
 import 'package:flutterpractice/cache/TokenCache.dart';
-import 'package:flutterpractice/ui/Home.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 
 class Network {
  String urlAer= "https://aerbag-dev.intcore.net/api";
@@ -66,6 +61,7 @@ class Network {
   } else {
       print(response.body);
       print("Error"+response.statusCode.toString());
+      return response.body;
   }}
 
   Map<String,String> updateHeaders() {
