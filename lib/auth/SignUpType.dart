@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterpractice/Model/login/UserResponse.dart';
+import 'package:flutterpractice/Model/login/SignInSocial.dart';
 import 'package:flutterpractice/auth/SignUpForm.dart';
 import 'package:firebase_auth/firebase_auth.dart' as eos;
 
@@ -8,23 +8,27 @@ import 'package:firebase_auth/firebase_auth.dart' as eos;
 class SignUpType extends StatefulWidget{
 
   eos.User userDetails;
-  SignUpType({Key key, this.userDetails}):super(key: key);
+  User user;
+  SignUpType({Key key, this.userDetails,this.user}):super(key: key);
 
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
 
-    return _SignUpType(userDetails);
+    return _SignUpType(userDetails,user);
   }
 
 }
 
 class _SignUpType extends State{
-   eos.User userDetails;
+   eos.User userDetailsGoogle;
+   User userDetailsFacebok;
    var type;
-   _SignUpType(eos.User user){
-        this.userDetails=user;
-        // print("signuptype"+userDetails.email);
+   _SignUpType(eos.User userDetails,User user){
+        this.userDetailsGoogle=userDetails;
+        this.userDetailsFacebok=user;
+        print('fffdddd'+user.email);
+    // print("signuptype"+userDetails.email);
         // print("signuptype"+userDetails.displayName);
   }
 
@@ -56,7 +60,7 @@ class _SignUpType extends State{
              type="customer";
              Navigator.pushReplacement(
                context,
-               MaterialPageRoute(builder: (context) => SignUpForm(userDetails: userDetails,type: type)),
+               MaterialPageRoute(builder: (context) => SignUpForm(userDetails: userDetailsGoogle,type: type,user: userDetailsFacebok,)),
              );
            }
 

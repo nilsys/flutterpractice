@@ -7,6 +7,7 @@ import 'package:flutterpractice/cache/AppCache.dart';
 import 'package:flutterpractice/cache/TokenCache.dart';
 import 'package:flutterpractice/cache/UserCache.dart';
 import 'package:flutterpractice/component/CardBox.dart';
+import 'package:flutterpractice/facebook/FacebookSigning.dart';
 import 'package:flutterpractice/google/GoogleSignIn.dart';
 import 'package:flutterpractice/network/Network.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -29,8 +30,9 @@ class _SignIn extends State<SignIn> {
 
   var validation = Validation();
   var network = Network();
-  var auth= AuthRepository();
+  var auth = AuthRepository();
   var gSignIn = GoogleLogin();
+  var facebook = FacebookSigning();
   final _formKey = GlobalKey<FormState>();
   var email, password;
   TextEditingController emailController = new TextEditingController();
@@ -189,13 +191,14 @@ class _SignIn extends State<SignIn> {
                                         right: 10, left: 10, top: 10),
                                     child: RaisedButton.icon(
                                         onPressed: () {
-                                          // Validate returns true if the form is valid, otherwise false.
-                                          if (_formKey.currentState
-                                              .validate()) {
-                                            //   network.login(email, password);
-                                            // If the form is valid, display a snackbar. In the real world,
-                                            // you'd often call a server or save the information in a database.
-                                          }
+
+                                          facebook.initiateFacebookLogin(context);
+
+
+
+
+
+
                                         },
                                         color: Colors.white,
 
@@ -225,26 +228,6 @@ class _SignIn extends State<SignIn> {
                                         right: 10, left: 10, top: 10),
                                     child: RaisedButton.icon(
                                         onPressed: () {
-                                          // Validate returns true if the form is valid, otherwise false.
-                                          // if (_formKey.currentState.validate()) {
-                                          //   // If the form is valid, display a snackbar. In the real world,
-                                          //   // you'd often call a server or save the information in a database.
-                                          // }
-
-
-          //   gSignIn.signIn(context).then((value) {
-          // if (value.uid != null) {
-          //   auth.signInSocial("social-login", {
-          //     'social_id': value.uid,
-          //     'social_type': "google",
-          //   }).then((value) {
-          //     Navigator.of(context)
-          //         .pushReplacement(
-          //         new MaterialPageRoute(
-          //             builder: (context) =>
-          //             new SignUpType(userDetails: value)));
-          //   });
-          //
 
                                           gSignIn.signIn(context).then((userDetails) {
                                             if (userDetails.uid != null) {
@@ -384,3 +367,5 @@ class _SignIn extends State<SignIn> {
   }
 
 }
+
+
