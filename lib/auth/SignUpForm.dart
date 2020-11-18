@@ -51,13 +51,13 @@ class _SignUpForm extends State<SignUpForm>{
     this.userDetails=userDetails;
     this.user = user;
 
-    print("registerrr   "+this.user.email);
-    print("registerr  "+this.user.name);
+
     //fill data when sign in google
     if (userDetails!=null){
       nameController.text= userDetails.displayName ;
       emailController.text= userDetails.email ;
     }else if (user != null){
+      //fill data when facebook
       nameController.text= user.name ;
       emailController.text= user.email ;
     }
@@ -96,6 +96,7 @@ class _SignUpForm extends State<SignUpForm>{
                   child:Column(
                     children: [
                       TextFormField(
+
                         // The validator receives the text that the user has entered.
                         validator: (value) {
                           if (value.isEmpty) {
@@ -130,7 +131,8 @@ class _SignUpForm extends State<SignUpForm>{
                       ),
                       SizedBox(height: 10),
                       TextFormField(
-                        // The validator receives the text that the user has entered.
+                          keyboardType: TextInputType.number,
+                          // The validator receives the text that the user has entered.
                         validator: (value) {
                           if (value.isEmpty) {
                             return 'Please enter Your Mobile';
@@ -148,7 +150,8 @@ class _SignUpForm extends State<SignUpForm>{
                       ),
                       SizedBox(height: 10),
                       TextFormField(
-                        // The validator receives the text that the user has entered.
+                        obscureText: true,
+                          // The validator receives the text that the user has entered.
                         validator: (value) {
                           if (value.isEmpty) {
                             return 'Please enter Your password';

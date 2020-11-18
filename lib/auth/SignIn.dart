@@ -110,6 +110,7 @@ class _SignIn extends State<SignIn> {
                                   ),
                                   SizedBox(height: 20),
                                   TextFormField(
+                                    obscureText: true,
                                     // The validator receives the text that the user has entered.
                                     validator: (value) {
                                       if (value.isEmpty) {

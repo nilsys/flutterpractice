@@ -27,9 +27,7 @@ class _SignUpType extends State{
    _SignUpType(eos.User userDetails,User user){
         this.userDetailsGoogle=userDetails;
         this.userDetailsFacebok=user;
-        print('fffdddd'+user.email);
-    // print("signuptype"+userDetails.email);
-        // print("signuptype"+userDetails.displayName);
+
   }
 
   @override
@@ -64,7 +62,6 @@ class _SignUpType extends State{
              );
            }
 
-
            ),
          ),
          Container(
@@ -77,5 +74,4 @@ class _SignUpType extends State{
      ),
    );
   }
-
 }
