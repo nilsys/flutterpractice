@@ -1,11 +1,7 @@
-
-import 'file:///C:/Users/intcore-013/AndroidStudioProjects/flutterpractice/lib/Model/register/RegisterResponse.dart';
 import 'package:flutterpractice/Model/login/UserResponse.dart';
 import 'package:flutterpractice/Model/logout/Logout.dart';
-import 'package:flutterpractice/Model/register/RegisterResponse.dart';
 import 'file:///C:/Users/intcore-013/AndroidStudioProjects/flutterpractice/lib/Model/login/SignInSocial.dart';
 import 'package:flutterpractice/network/Network.dart';
-import 'package:http/http.dart';
 
 class AuthRepository{
 
@@ -32,8 +28,8 @@ class AuthRepository{
   Future<SignInSocial> signInSocial(String endpoint,Map<String,String> headers,Map<String,String> body) async {
     var jsonData = await network.post(endpoint, headers ,body);
     SignInSocial userResponse = await SignInSocial.fromJson(jsonData);
-    print(userResponse.user.name);
-    print(userResponse.user.type);
+    print("aaaaaa"+userResponse.user.name);
+    print("aaaaaa"+userResponse.user.id.toString());
     return userResponse;
 }
 
@@ -52,5 +48,4 @@ class AuthRepository{
     print("Logout"+logout.message.toString());
     return logout;
   }
-
 }

@@ -13,6 +13,11 @@ class AppCache{
   static const String KEY_USER="User";
   static const String KEY_TOKEN = "token";
   static const String KEY_TYPE = "type";
+  static const String KEY_NAME = "Name";
+  static const String KEY_PROFILE_IMAGE = "IMAGE";
+  static const String KEY_PHONE_NUMBER = "PHONE";
+  static const String KEY_LOCATION = "LOCATION";
+  static const String KEY_Email = "Email";
 
   Future<void> init () async{
     prefs= await SharedPreferences.getInstance();

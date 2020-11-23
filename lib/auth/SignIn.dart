@@ -228,11 +228,11 @@ class _SignIn extends State<SignIn> {
                                     margin: EdgeInsets.only(
                                         right: 10, left: 10, top: 10),
                                     child: RaisedButton.icon(
-                                        onPressed: () {
+                                        onPressed: () async {
 
-                                          gSignIn.signIn(context).then((userDetails) {
+                                          await gSignIn.signIn(context).then((userDetails) async {
                                             if (userDetails.uid != null) {
-                                              auth.signInSocial("social-login",
+                                              await auth.signInSocial("social-login",
                                                   {
                                                     'Accept':'application/json',
                                                     'Content-Type': 'application/json',
@@ -241,11 +241,14 @@ class _SignIn extends State<SignIn> {
                                                     'social_id': userDetails.uid,
                                                     'social_type': "google",
                                                   }).then((loginGoogle) {
-                                                if ( loginGoogle.user!=null) {
-                                                  print('');
+                                                  if ( loginGoogle.user!=null) {
                                                   TokenCache.instance.setAccessToken(loginGoogle.token);
                                                   UserCache.instance.setUserCache(true);
                                                   UserCache.instance.setUserType(loginGoogle.user.type);
+                                                  UserCache.instance.setUserImage(loginGoogle.user.avatar);
+                                                  UserCache.instance.setUserName(loginGoogle.user.name);
+                                                  UserCache.instance.setUserPhone(loginGoogle.user.mobile);
+                                                  UserCache.instance.setUserEmail(loginGoogle.user.email);
 
                                                       if (loginGoogle.user.type == "serviceProvider") {}
                                                       else if (loginGoogle.user.type == "customer") {
@@ -259,8 +262,9 @@ class _SignIn extends State<SignIn> {
                                                                 new MainScreens()));
                                                       }
                                                     }
-                                                  });
-                                                  //.catchError(onErrorGoogle(userDetails));
+                                                  }).catchError((Object error) {
+                                          //      onErrorGoogle(err);
+                                              });
                                             }
                                           });
 
@@ -361,7 +365,7 @@ class _SignIn extends State<SignIn> {
 
   Function onErrorGoogle(User userDetails) {
     Navigator.of(context)
-        .pushReplacement(
+        .push(
         new MaterialPageRoute(
             builder: (context) =>
             new SignUpType(userDetails: userDetails,)));

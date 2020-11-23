@@ -40,7 +40,7 @@ class _Home extends State<Home>{
         appBar: AppBar(title: Text("Home"),
           actions: <Widget>[
             PopupMenuButton<String>(
-              onSelected: handleClick,
+              onSelected: logout,
               itemBuilder: (BuildContext context) {
                 return {'Logout'}.map((String choice) {
                   return PopupMenuItem<String>(
@@ -340,130 +340,6 @@ class _Home extends State<Home>{
                 )
 
       );
-              // return ListView.builder(
-              //   itemCount: list.length,
-              //   itemBuilder: (context, index) {
-              //
-              // return Container(
-              //   width: 400,
-              //   //    height:100,
-              //   padding: EdgeInsets.all(10),
-              //   child: Card(
-              //     shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(15.0),
-              //     ),
-              //     color: Colors.white,
-              //     child: Container(
-              //       child: Column(
-              //         children: [
-              //           Row(
-              //             children: [
-              //               Container(
-              //                 padding: EdgeInsets.only(left: 10, top: 10),
-              //                 child: Text(
-              //                   list[index].name,
-              //                   style: TextStyle(
-              //                       fontSize: 16,
-              //                       fontWeight: FontWeight.bold,
-              //                       color: Colors.black45),
-              //                 ),
-              //               ),
-              //               Container(
-              //                   margin: EdgeInsets.only(left: 10),
-              //                   padding: EdgeInsets.only(top: 10),
-              //                   child: SmoothStarRating(
-              //                       allowHalfRating: false,
-              //                       onRated: (v) {},
-              //                       starCount: 5,
-              //                       rating: double.parse(list[index].rates.toString()),
-              //                       size: 25.0,
-              //                       isReadOnly: true,
-              //                       filledIconData: Icons.star,
-              //                       color: Colors.amber,
-              //                       borderColor: Colors.amber,
-              //                       spacing: 0.0)),
-              //               Spacer(flex: 2),
-              //               Container(
-              //                 padding: EdgeInsets.only(right: 10, top: 10),
-              //                 alignment: Alignment.topRight,
-              //                 child: Text("city",
-              //                     style: TextStyle(
-              //                         fontSize: 16,
-              //                         fontWeight: FontWeight.bold,
-              //                         color: Colors.white)),
-              //               ),
-              //             ],
-              //           ),
-              //           Row(
-              //             mainAxisAlignment: MainAxisAlignment.start,
-              //             crossAxisAlignment: CrossAxisAlignment.start,
-              //             children: [
-              //               Container(
-              //                 child: ClipRRect(
-              //                   borderRadius: BorderRadius.circular(8.0),
-              //                   child: Image.network(
-              //                     list[index].avatar,
-              //                     width: 100,
-              //                     height: 100,
-              //                   ),
-              //                 ),
-              //                 padding: EdgeInsets.all(8),
-              //               ),
-              //               Container(
-              //                 padding: EdgeInsets.only(top: 10),
-              //                 child: Column(
-              //                   mainAxisAlignment: MainAxisAlignment.start,
-              //                   crossAxisAlignment: CrossAxisAlignment.start,
-              //                   children: [
-              //                     Container(
-              //                       child: Container(
-              //                         width: MediaQuery
-              //                             .of(context)
-              //                             .size
-              //                             .width - 154,
-              //                         child: Row(
-              //                           children: [
-              //                             Expanded(
-              //                                 flex: 1,
-              //                                 child: Text(
-              //                                   list[index].type,
-              //                                   style: TextStyle(
-              //                                       fontSize: 18,
-              //                                       color: Colors.blue),
-              //                                 )),
-              //                             Text(
-              //                               list[index].projectNumber.counter
-              //                                   .toString(),
-              //                               style: TextStyle(
-              //                                 color: Colors.black54,
-              //                                 fontSize: 16,
-              //                               ),
-              //                               textAlign: TextAlign.right,
-              //                             )
-              //                           ],
-              //                         ),
-              //                       ),
-              //                     ),
-              //                     Row(
-              //                       children: [
-              //                         MultiLine(list[index].description, 3, 150, Color(0xff888888))
-              //                       ],
-              //                     )
-              //                   ],
-              //                 ),
-              //               )
-              //             ],
-              //           )
-              //         ],
-              //       ),
-              //     ),
-              //   ),
-              // );
-
-            // }else {
-            //   return CircularProgressIndicator();
-            // }
-
 
   WidgetHoriRecyclerView(BuildContext context)=>
       Container(
@@ -591,7 +467,7 @@ class _Home extends State<Home>{
 
 
 
-  void handleClick(String value) {
+  void logout(String value) {
     var token = TokenCache.instance.getAccessToken();
     auth.logout("logout",{
       'Accept':'application/json',
@@ -606,7 +482,6 @@ class _Home extends State<Home>{
               builder: (
                   context) =>
               new SignIn()));
-
     });
     
   }

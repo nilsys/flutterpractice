@@ -33,4 +33,46 @@ class UserCache {
   }
 
 
+  void setUserName(String name){
+    if (name == null) return ;
+    AppCache.instance.prefs.setString(AppCache.KEY_NAME, name);
+  }
+
+  String getUserName() {
+    String name = AppCache.instance.prefs.getString(AppCache.KEY_NAME);
+    return name ;
+  }
+
+  void setUserEmail(String email){
+    if (email == null) return ;
+    AppCache.instance.prefs.setString(AppCache.KEY_Email, email);
+  }
+
+  String getUserEmail() {
+    String email = AppCache.instance.prefs.getString(AppCache.KEY_Email);
+    return email ;
+  }
+
+
+  void setUserPhone(String phone){
+    if (phone == null) return ;
+    AppCache.instance.prefs.setString(AppCache.KEY_PHONE_NUMBER, phone);
+  }
+
+  String getUserPhone() {
+    String phone = AppCache.instance.prefs.getString(AppCache.KEY_PHONE_NUMBER);
+    return phone;
+  }
+
+
+  void setUserImage(String image){
+    if (image == null) return ;
+    AppCache.instance.prefs.setString(AppCache.KEY_PROFILE_IMAGE, image);
+  }
+
+  String getUserImage() {
+    String image = AppCache.instance.prefs.getString(AppCache.KEY_PROFILE_IMAGE);
+    return image;
+  }
+
 }

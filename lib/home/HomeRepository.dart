@@ -13,6 +13,7 @@ class HomeRepository {
 
   Future<NearbyResponse> getNearby(String endpoint) async {
     var jsonData = await network.get(endpoint);
+    print(jsonData);
     NearbyResponse nearbyResponse = await NearbyResponse.fromJson(jsonData);
     print(nearbyResponse.provider[0].name);
     print(nearbyResponse.provider[0].location);

@@ -7,7 +7,9 @@ class SignInSocial {
   SignInSocial({this.user, this.token, this.lang, this.deviceToken});
 
   SignInSocial.fromJson(Map<String, dynamic> json) {
-    user = json['user'] != null ? new User.fromJson(json['user']) : null;
+    if(json['user'] != null){
+      user = User.fromJson(json['user']);
+    }
     token = json['token'];
     lang = json['lang'];
     deviceToken = json['device_token'];
@@ -39,9 +41,9 @@ class User {
   List<Null> skills;
   List<Null> categories;
   int rates;
-  ProjectCounter projectCounter;
+  int projectCounter;
   ProjectCounter bidsCounter;
-  ProjectCounter projectNumber;
+  int projectNumber;
   String avatar;
   Null register;
   Null statistics;
@@ -105,15 +107,11 @@ class User {
     //   });
     // }
     rates = json['rates'];
-    projectCounter = json['projectCounter'] != null
-        ? new ProjectCounter.fromJson(json['projectCounter'])
-        : null;
+    projectCounter= json['projectCounter'];
     bidsCounter = json['bidsCounter'] != null
         ? new ProjectCounter.fromJson(json['bidsCounter'])
         : null;
-    projectNumber = json['projectNumber'] != null
-        ? new ProjectCounter.fromJson(json['projectNumber'])
-        : null;
+    projectNumber = json['projectNumber'];
     avatar = json['avatar'];
     register = json['register'];
     statistics = json['statistics'];
@@ -151,13 +149,13 @@ class User {
     // }
     data['rates'] = this.rates;
     if (this.projectCounter != null) {
-      data['projectCounter'] = this.projectCounter.toJson();
+      data['projectCounter'] = this.projectCounter;
     }
     if (this.bidsCounter != null) {
       data['bidsCounter'] = this.bidsCounter.toJson();
     }
     if (this.projectNumber != null) {
-      data['projectNumber'] = this.projectNumber.toJson();
+      data['projectNumber'] = this.projectNumber;
     }
     data['avatar'] = this.avatar;
     data['register'] = this.register;

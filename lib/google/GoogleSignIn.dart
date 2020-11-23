@@ -8,7 +8,7 @@ class GoogleLogin {
   GoogleSignIn _googleSignIn = new GoogleSignIn();
 
   Future<User> signIn(BuildContext context) async {
-
+    await _googleSignIn.signOut();
     final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
     final GoogleSignInAuthentication googleAuth = await googleUser
         .authentication;
@@ -24,7 +24,6 @@ class GoogleLogin {
 
     List<ProviderDetails> providerData = new List<ProviderDetails>();
     providerData.add(providerInfo);
-
     UserDetails details = new UserDetails(
       userDetails.user.uid,
       userDetails.user.displayName,

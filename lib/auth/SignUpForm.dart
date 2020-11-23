@@ -61,10 +61,6 @@ class _SignUpForm extends State<SignUpForm>{
       nameController.text= user.name ;
       emailController.text= user.email ;
     }
-
-
-
-
   }
 
 
@@ -322,7 +318,8 @@ class _SignUpForm extends State<SignUpForm>{
                               // }
 
                               gSignIn.signIn(context).then((value) {
-                                if (value.uid != null) {
+                                print('sssss'+value.uid);
+                                  if (value.uid != null) {
                                   auth.signInSocial("social-login",
                                       {
                                         'Accept':'application/json',
