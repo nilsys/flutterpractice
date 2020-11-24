@@ -211,6 +211,7 @@ class _SignUpForm extends State<SignUpForm>{
                                         .setUserPhone(value.user.mobile);
                                     UserCache.instance
                                         .setUserEmail(value.user.email);
+                                    UserCache.instance.setUserlocation(value.user.location.address);
 
                                     if (value.user.type == "serviceProvider") {
                                       //continue registeration

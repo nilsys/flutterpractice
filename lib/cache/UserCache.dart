@@ -75,4 +75,17 @@ class UserCache {
     return image;
   }
 
+
+  void setUserlocation(String location){
+    if (location == null) return ;
+    AppCache.instance.prefs.setString(AppCache.KEY_LOCATION, location);
+  }
+
+  String getUserLocation(){
+    String location = AppCache.instance.prefs.getString(AppCache.KEY_LOCATION);
+    return location;
+  }
+
+
+
 }

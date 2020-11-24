@@ -2,7 +2,7 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterpractice/profile/ProfileScreen.dart';
+import 'file:///C:/Users/intcore-013/AndroidStudioProjects/flutterpractice/lib/profile/ui/ProfileScreen.dart';
 import 'package:flutterpractice/ui/ClassicGarage.dart';
 
 import '../home/Home.dart';
@@ -35,7 +35,7 @@ class _MainScreen extends State<MainScreens> {
             onItemSelected: (index) => setState(() {
               _selectedIndex = index;
               _pageController.animateToPage(index,
-                  duration: Duration(milliseconds: 200), curve: Curves.ease);
+                  duration: Duration(milliseconds: 300), curve: Curves.ease);
             })  ,
             items: [
               BottomNavyBarItem(

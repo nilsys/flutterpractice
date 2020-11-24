@@ -169,6 +169,7 @@ class _SignIn extends State<SignIn> {
                                             UserCache.instance.setUserName(value.user.name);
                                             UserCache.instance.setUserPhone(value.user.mobile);
                                             UserCache.instance.setUserEmail(value.user.email);
+                                            UserCache.instance.setUserlocation(value.user.location.address);
                                             if (value.user.type ==
                                                 "serviceProvider") {
                                             } else if (value.user.type == "customer") {
@@ -250,6 +251,7 @@ class _SignIn extends State<SignIn> {
                                                   UserCache.instance.setUserName(loginGoogle.user.name);
                                                   UserCache.instance.setUserPhone(loginGoogle.user.mobile);
                                                   UserCache.instance.setUserEmail(loginGoogle.user.email);
+                                                  UserCache.instance.setUserlocation(loginGoogle.user.location);
 
                                                       if (loginGoogle.user.type == "serviceProvider") {}
                                                       else if (loginGoogle.user.type == "customer") {

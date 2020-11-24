@@ -33,11 +33,11 @@ class User {
   Null description;
   String email;
   String type;
-  Null startTime;
-  Null endTime;
-  Null startDate;
-  Null endDate;
-  Null commercialReg;
+  String startTime;
+  String endTime;
+  String startDate;
+  String endDate;
+  String commercialReg;
   List<Null> skills;
   List<Null> categories;
   int rates;
@@ -50,10 +50,10 @@ class User {
   String mobile;
   int verified;
   Null setting;
-  Null workshopName;
+  String workshopName;
   List<Null> comments;
-  Null location;
-  Null notificationSettings;
+  String location;
+  String notificationSettings;
 
   User(
       {this.id,

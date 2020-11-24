@@ -154,5 +154,7 @@ class FacebookSigning {
     UserCache.instance.setUserName(value.user.name);
     UserCache.instance.setUserPhone(value.user.mobile);
     UserCache.instance.setUserEmail(value.user.email);
+    UserCache.instance.setUserlocation(value.user.location);
+
   }
 }
