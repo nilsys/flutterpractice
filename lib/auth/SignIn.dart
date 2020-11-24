@@ -161,13 +161,14 @@ class _SignIn extends State<SignIn> {
                                             await SharedPreferences
                                                 .getInstance();
 
-                                          //  await prefs.setBool('isUser', true);
-                                         //   print(value.token);
                                             TokenCache.instance.setAccessToken(
                                                 value.token);
                                             UserCache.instance.setUserCache(true);
                                             UserCache.instance.setUserType(value.user.type);
-
+                                            UserCache.instance.setUserImage(value.user.avatar);
+                                            UserCache.instance.setUserName(value.user.name);
+                                            UserCache.instance.setUserPhone(value.user.mobile);
+                                            UserCache.instance.setUserEmail(value.user.email);
                                             if (value.user.type ==
                                                 "serviceProvider") {
                                             } else if (value.user.type == "customer") {

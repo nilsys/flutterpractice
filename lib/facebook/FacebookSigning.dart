@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
-import 'package:flutter_progress_hud/flutter_progress_hud.dart';
 import 'package:flutterpractice/Model/FacebookJson.dart';
 import 'package:flutterpractice/Model/login/SignInSocial.dart';
 import 'package:flutterpractice/auth/AuthRepository.dart';
 import 'package:flutterpractice/auth/SignUpType.dart';
+import 'package:flutterpractice/cache/TokenCache.dart';
+import 'package:flutterpractice/cache/UserCache.dart';
 import 'package:flutterpractice/google/GoogleSignIn.dart';
 import 'package:firebase_auth/firebase_auth.dart' as eos;
 import 'package:flutterpractice/ui/MainScreens.dart';
@@ -33,6 +34,7 @@ class FacebookSigning {
 
   void initiateFacebookLogin(BuildContext context) async {
     isLoading = true;
+    logout();
     var facebookLoginResult =
     await facebookLogin.logIn(['email']);
 
@@ -53,7 +55,6 @@ class FacebookSigning {
 
         var user = json.decode(graphResponse.body);
         FacebookResponse facebookResponse = FacebookResponse.fromJson(user);
-        print("fffffffff" + user.toString());
 
 
         User profile = User();
@@ -62,6 +63,7 @@ class FacebookSigning {
         profile.email = facebookResponse.email;
         var auth=AuthRepository();  
         if (userId != null) {
+          print('userID'+userId);
           auth..signInSocial("social-login",
               {
                 'Accept':'application/json',
@@ -69,13 +71,11 @@ class FacebookSigning {
               },
               {
                 'social_id': userId,
-                'social_type': "google",
-              }).then((value) => {
-          Navigator.of(context)
-              .push(
-          new MaterialPageRoute(
-          builder: (context) =>
-          new MainScreens()))
+                'social_type': "facebook",
+              }).then((value)   {
+
+             saveUserData(value);
+             Navigator.of(context).push(new MaterialPageRoute(builder: (context) => new MainScreens()));
 
                  }).catchError((Object error) {
             Navigator.of(context)
@@ -138,10 +138,21 @@ class FacebookSigning {
       );
     }
 
-    _logout() async {
-      await facebookLogin.logOut();
-      onLoginStatusChanged(false);
-      print("Logged out");
-    }
+
+  }
+  void  logout()  async {
+    await facebookLogin.logOut();
+    onLoginStatusChanged(false);
+    print("Logged out");
+  }
+  void saveUserData(SignInSocial value){
+    print('tokeninFacebook    '+value.token);
+    TokenCache.instance.setAccessToken(value.token);
+    UserCache.instance.setUserCache(true);
+    UserCache.instance.setUserType(value.user.type);
+    UserCache.instance.setUserImage(value.user.avatar);
+    UserCache.instance.setUserName(value.user.name);
+    UserCache.instance.setUserPhone(value.user.mobile);
+    UserCache.instance.setUserEmail(value.user.email);
   }
 }

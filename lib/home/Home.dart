@@ -469,13 +469,13 @@ class _Home extends State<Home>{
 
   void logout(String value) {
     var token = TokenCache.instance.getAccessToken();
+    print('tokenLogOut'+token);
     auth.logout("logout",{
       'Accept':'application/json',
       'Authorization': 'Bearer $token',
     }).then((value) {
       print("LogOutt"+value.message.toString());
       UserCache.instance.setUserCache(false);
-
       Navigator.of(context)
           .pushReplacement(
           new MaterialPageRoute(

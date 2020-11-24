@@ -32,7 +32,8 @@ class _ProfileScreen extends State{
 
     return SafeArea(
       child: Scaffold(
-        body: Container(
+        appBar: AppBar(title: Text("My Profile")),
+         body: Container(
           child: Column(
             children: [
             Container(

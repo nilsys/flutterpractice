@@ -12,7 +12,7 @@ class TokenCache{
 
   void setAccessToken(String token){
     if (token==null) return ;
-    print('SetAccessToken'+token);
+    print('SetAccessToken  '+token);
     AppCache.instance.prefs.setString(AppCache.KEY_TOKEN, token);
   }
 

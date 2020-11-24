@@ -1,6 +1,6 @@
+import 'package:flutterpractice/Model/login/SignInSocial.dart';
 import 'package:flutterpractice/Model/login/UserResponse.dart';
 import 'package:flutterpractice/Model/logout/Logout.dart';
-import 'file:///C:/Users/intcore-013/AndroidStudioProjects/flutterpractice/lib/Model/login/SignInSocial.dart';
 import 'package:flutterpractice/network/Network.dart';
 
 class AuthRepository{

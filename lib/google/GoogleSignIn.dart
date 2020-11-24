@@ -12,16 +12,13 @@ class GoogleLogin {
     final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
     final GoogleSignInAuthentication googleAuth = await googleUser
         .authentication;
-
     final AuthCredential credential = GoogleAuthProvider.getCredential(
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
     );
-
     UserCredential userDetails = await _firebaseAuth.signInWithCredential(
         credential);
     ProviderDetails providerInfo = new ProviderDetails(userDetails.user.uid);
-
     List<ProviderDetails> providerData = new List<ProviderDetails>();
     providerData.add(providerInfo);
     UserDetails details = new UserDetails(
@@ -31,10 +28,8 @@ class GoogleLogin {
       userDetails.user.email,
       providerData,
     );
-
     return userDetails.user;
   }
-
 }
 class UserDetails {
   final String providerDetails;
@@ -42,7 +37,6 @@ class UserDetails {
   final String photoUrl;
   final String userEmail;
   final List<ProviderDetails> providerData;
-
   UserDetails(this.providerDetails,this.userName, this.photoUrl,this.userEmail, this.providerData);
 }
 

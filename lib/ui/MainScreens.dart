@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterpractice/profile/ProfileScreen.dart';
 import 'package:flutterpractice/ui/ClassicGarage.dart';
 
-import 'Home.dart';
+import '../home/Home.dart';
 import 'Login.dart';
 import '../auth/SignIn.dart';
 
@@ -23,6 +23,7 @@ class _MainScreen extends State<MainScreens> {
       ),
       home: new Scaffold(
           body: PageView(
+            physics: NeverScrollableScrollPhysics(),
             children: _Screens,
             controller: _pageController ,
           ),
@@ -34,7 +35,7 @@ class _MainScreen extends State<MainScreens> {
             onItemSelected: (index) => setState(() {
               _selectedIndex = index;
               _pageController.animateToPage(index,
-                  duration: Duration(milliseconds: 300), curve: Curves.ease);
+                  duration: Duration(milliseconds: 200), curve: Curves.ease);
             })  ,
             items: [
               BottomNavyBarItem(
@@ -45,12 +46,12 @@ class _MainScreen extends State<MainScreens> {
               ),
               BottomNavyBarItem(
                   icon: Icon(Icons.home_work),
-                  title: Text('Users'),
+                  title: Text('Garage'),
                   activeColor: Colors.white
               ),
               BottomNavyBarItem(
                   icon: Icon(Icons.person),
-                  title: Text('Messages'),
+                  title: Text('Profile'),
                   activeColor: Colors.white
               ),
               BottomNavyBarItem(
@@ -60,7 +61,7 @@ class _MainScreen extends State<MainScreens> {
               ),
               BottomNavyBarItem(
                   icon: Icon(Icons.notifications),
-                  title: Text('Settings'),
+                  title: Text('Notification'),
                   activeColor: Colors.white
               )
             ],
