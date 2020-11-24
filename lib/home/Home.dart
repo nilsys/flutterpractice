@@ -8,6 +8,7 @@ import 'package:flutterpractice/cache/TokenCache.dart';
 import 'package:flutterpractice/cache/UserCache.dart';
 import 'package:flutterpractice/component/CardBox.dart';
 import 'package:flutterpractice/component/MultiLine.dart';
+import 'package:flutterpractice/core/AppColor.dart';
 import 'package:flutterpractice/home/HomeRepository.dart';
 import 'package:flutterpractice/network/Network.dart';
 import 'package:http/http.dart';
@@ -217,7 +218,7 @@ class _Home extends State<Home>{
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0),
                         ),
-                        color: Colors.white,
+                        color:AppColor.white,
                         child: Container(
                           child: Column(
                             children: [
@@ -230,7 +231,7 @@ class _Home extends State<Home>{
                                       style: TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold,
-                                          color: Colors.black45),
+                                          color: AppColor.black),
                                     ),
                                   ),
                                   Container(
@@ -244,8 +245,8 @@ class _Home extends State<Home>{
                                           size: 25.0,
                                           isReadOnly: true,
                                           filledIconData: Icons.star,
-                                          color: Colors.amber,
-                                          borderColor: Colors.amber,
+                                          color: AppColor.yellow,
+                                          borderColor: AppColor.yellow,
                                           spacing: 0.0)),
                                   Spacer(flex: 2),
                                   Container(
@@ -255,7 +256,7 @@ class _Home extends State<Home>{
                                         style: TextStyle(
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold,
-                                            color: Colors.white)),
+                                            color: AppColor.white)),
                                   ),
                                 ],
                               ),
@@ -296,13 +297,13 @@ class _Home extends State<Home>{
                                                       response.type,
                                                       style: TextStyle(
                                                           fontSize: 18,
-                                                          color: Colors.blue),
+                                                          color: AppColor.blue),
                                                     )),
                                                 Text(
                                                   response.projectNumber.counter
                                                       .toString(),
                                                   style: TextStyle(
-                                                    color: Colors.black54,
+                                                    color: AppColor.black,
                                                     fontSize: 16,
                                                   ),
                                                   textAlign: TextAlign.right,
@@ -313,7 +314,7 @@ class _Home extends State<Home>{
                                         ),
                                         Row(
                                           children: [
-                                            MultiLine( response.description, 3, 150, Color(0xff888888))
+                                            MultiLine( response.description, 3, 150, AppColor.gray)
                                           ],
                                         )
                                       ],
@@ -356,7 +357,7 @@ class _Home extends State<Home>{
                 height:150,
                 padding: EdgeInsets.only(right: 10,left: 10,top: 4,bottom: 2),
                 child: CardBox(
-                  Color(0xff405A7B),
+                  AppColor.darkBlue,
                   10,
                   Container(
                     child: Column(
@@ -370,7 +371,7 @@ class _Home extends State<Home>{
                                 style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.white),
+                                    color: AppColor.white),
                               ),
                             ),
 
@@ -382,7 +383,7 @@ class _Home extends State<Home>{
                                   style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
-                                      color: Color(0xffEEEEEE))),
+                                      color: AppColor.white)),
                             ),
                           ],
                         ),
@@ -417,14 +418,14 @@ class _Home extends State<Home>{
                                             response.type,
                                             style: TextStyle(
                                                 fontSize: 18,
-                                                color: Colors.blue),
+                                                color: AppColor.blue),
                                           ),
                                           Container(
                                             child: Text(
                                               response.projectNumber.counter
                                                   .toString(),
                                               style: TextStyle(
-                                                color: Colors.white,
+                                                color: AppColor.white,
                                                 fontSize: 14,
                                               ),
                                               textAlign: TextAlign.right,
@@ -436,7 +437,7 @@ class _Home extends State<Home>{
                                   ),
                                   Row(
                                     children: [
-                                      MultiLine(response.description, 3, 150, Color(0xffFCFCFC))
+                                      MultiLine(response.description, 3, 150, AppColor.white)
                                     ],
                                   )
                                 ],

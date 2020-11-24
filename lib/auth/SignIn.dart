@@ -1,12 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterpractice/Validation.dart';
+import 'file:///C:/Users/intcore-013/AndroidStudioProjects/flutterpractice/lib/core/Validation.dart';
 import 'package:flutterpractice/auth/SignUpType.dart';
 import 'package:flutterpractice/cache/AppCache.dart';
 import 'package:flutterpractice/cache/TokenCache.dart';
 import 'package:flutterpractice/cache/UserCache.dart';
 import 'package:flutterpractice/component/CardBox.dart';
+import 'package:flutterpractice/core/AppColor.dart';
 import 'package:flutterpractice/facebook/FacebookSigning.dart';
 import 'package:flutterpractice/google/GoogleSignIn.dart';
 import 'package:flutterpractice/network/Network.dart';
@@ -66,19 +67,19 @@ class _SignIn extends State<SignIn> {
                     padding: EdgeInsets.only(left: 33, right: 33),
                     child: Divider(
                         thickness: 4,
-                        color: Color(0xff29B2FE)
+                        color: AppColor.blue
                     ),
                   ),
                   Container(
                       alignment: Alignment.topLeft,
                       padding: EdgeInsets.only(left: 20),
                       child: Text(
-                        "LOGIN", style: TextStyle(color: Color(0xff405A7B),
+                        "LOGIN", style: TextStyle(color: AppColor.darkBlue,
                           fontSize: 32,
                           fontWeight: FontWeight.bold),)),
                   Container(
                     margin: EdgeInsets.only(top: 17, left: 20, right: 10),
-                    child: CardBox(Colors.white, 10, Container(
+                    child: CardBox(AppColor.white, 10, Container(
                       child: Column(
                         children: [
                           Form(
@@ -137,7 +138,7 @@ class _SignIn extends State<SignIn> {
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 16,
-                                          color: Color(0xff405A7B)),
+                                          color: AppColor.darkBlue),
                                     ),
                                   ),
                                   Container(
@@ -184,7 +185,7 @@ class _SignIn extends State<SignIn> {
                                         }
                                       },
                                       child: Text('Login'),
-                                      color: Color(0xff29B2FE),
+                                      color: AppColor.blue,
                                     ),
                                   ),
                                   Container(
@@ -203,12 +204,12 @@ class _SignIn extends State<SignIn> {
 
 
                                         },
-                                        color: Colors.white,
+                                        color: AppColor.white,
 
                                         label: Text(
                                           'Sign in with Facebook',
                                           style: TextStyle(
-                                              color: Color(0xff3B5998),
+                                              color: AppColor.blue,
                                               fontSize: 16),
                                         ),
                                         icon: Image.asset(
@@ -219,7 +220,7 @@ class _SignIn extends State<SignIn> {
                                             borderRadius: BorderRadius.circular(
                                                 8.0),
                                             side: BorderSide(
-                                                color: Color(0xff29B2FE))
+                                                color: AppColor.blue)
                                         )
                                     )
                                     ,
@@ -273,11 +274,11 @@ class _SignIn extends State<SignIn> {
 
 
                                         },
-                                        color: Colors.white,
+                                        color: AppColor.white,
                                         label: Text(
                                           'Sign in with Google',
                                           style: TextStyle(
-                                              color: Color(0xffDD4B39),
+                                              color: AppColor.red,
                                               fontSize: 16),
                                         ),
                                         icon: Image.asset(
@@ -287,7 +288,7 @@ class _SignIn extends State<SignIn> {
                                             borderRadius: BorderRadius.circular(
                                                 8.0),
                                             side: BorderSide(
-                                                color: Color(0xff29B2FE))
+                                                color: AppColor.blue)
                                         )
                                     ),
 
@@ -314,11 +315,11 @@ class _SignIn extends State<SignIn> {
                                     new SignUpType()));
                           },
                           child: Text('SIGN UP'),
-                          color: Colors.white,
+                          color: AppColor.white,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8.0),
                               side: BorderSide(
-                                  color: Color(0xff29B2FE), width: 2)
+                                  color: AppColor.blue, width: 2)
                           )
                       )
                   ),
@@ -348,8 +349,8 @@ class _SignIn extends State<SignIn> {
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
+          backgroundColor: AppColor.red,
+          textColor: AppColor.white,
           fontSize: 16.0
       );
     }

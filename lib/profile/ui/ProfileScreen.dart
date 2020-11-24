@@ -7,6 +7,7 @@ import 'package:flutterpractice/cache/AppCache.dart';
 import 'package:flutterpractice/cache/TokenCache.dart';
 import 'package:flutterpractice/cache/UserCache.dart';
 import 'package:flutterpractice/component/CardBox.dart';
+import 'package:flutterpractice/core/AppColor.dart';
 import 'package:flutterpractice/profile/blocks/ProfileBlock.dart';
 import 'package:flutterpractice/profile/model/ProfileModel.dart';
 
@@ -54,9 +55,9 @@ class ProfileScreenState extends State<ProfileScreen> {
             height: 150,
             width: double.infinity,
             //    decoration: new BoxDecoration(borderRadius: BorderRadius.circular(4.0)),
-            color: Colors.white,
+            color: AppColor.white,
             child: CardBox(
-              Colors.white,
+              AppColor.white,
               4,
               Container(child: Image.network(snapshot.image)),
             ),
@@ -66,9 +67,9 @@ class ProfileScreenState extends State<ProfileScreen> {
             height: 256,
             width: double.infinity,
             //   decoration: new BoxDecoration(borderRadius: BorderRadius.circular(4.0)),
-            color: Colors.white,
+            color: AppColor.white,
             child: CardBox(
-              Colors.white,
+              AppColor.white,
               4,
               Container(
                   child: Column(
@@ -84,7 +85,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                       Text(
                         snapshot.userName,
                         style:
-                            TextStyle(fontSize: 18, color: Color(0xff405A7B)),
+                            TextStyle(fontSize: 18, color: AppColor.darkBlue),
                       )
                     ],
                   ),
@@ -99,7 +100,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                       Text(
                         snapshot.userEmail,
                         style:
-                            TextStyle(fontSize: 18, color: Color(0xff405A7B)),
+                            TextStyle(fontSize: 18, color:AppColor.darkBlue),
                       )
                     ],
                   ),
@@ -114,7 +115,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                       Text(
                         snapshot.userPhone,
                         style:
-                            TextStyle(fontSize: 18, color: Color(0xff405A7B)),
+                            TextStyle(fontSize: 18, color: AppColor.darkBlue),
                       )
                     ],
                   ),
@@ -129,7 +130,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                       Text(
                         snapshot.userLocation??'',
                         style:
-                            TextStyle(fontSize: 18, color: Color(0xff405A7B)),
+                            TextStyle(fontSize: 18, color: AppColor.darkBlue),
                       )
                     ],
                   ),
@@ -143,14 +144,14 @@ class ProfileScreenState extends State<ProfileScreen> {
             margin: EdgeInsets.only(right: 10, left: 10, top: 10),
             child: RaisedButton(
                 onPressed: () {},
-                color: Colors.white,
+                color: AppColor.white,
                 child: Text(
                   'UPDATE',
-                  style: TextStyle(color: Color(0xff29B2FE), fontSize: 16),
+                  style: TextStyle(color: AppColor.blue, fontSize: 16),
                 ),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8.0),
-                    side: BorderSide(color: Color(0xff29B2FE)))),
+                    side: BorderSide(color: AppColor.blue))),
           ),
           Container(
             width: double.infinity,
@@ -160,14 +161,14 @@ class ProfileScreenState extends State<ProfileScreen> {
                 onPressed: () {
                   logout();
                 },
-                color: Color(0xff29B2FE),
+                color:AppColor.blue,
                 child: Text(
                   'LOGOUT',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
+                  style: TextStyle(color: AppColor.white, fontSize: 16),
                 ),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8.0),
-                    side: BorderSide(color: Color(0xff29B2FE)))),
+                    side: BorderSide(color: AppColor.blue))),
           ),
         ],
       ),
