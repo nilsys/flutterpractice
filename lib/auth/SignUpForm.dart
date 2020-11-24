@@ -9,6 +9,7 @@ import 'package:flutterpractice/auth/AuthRepository.dart';
 import 'package:flutterpractice/cache/TokenCache.dart';
 import 'package:flutterpractice/cache/UserCache.dart';
 import 'package:flutterpractice/component/CardBox.dart';
+import 'package:flutterpractice/core/AppColor.dart';
 import 'package:flutterpractice/google/GoogleSignIn.dart';
 import 'package:flutterpractice/network/Network.dart';
 import 'package:flutterpractice/ui/MainScreens.dart';
@@ -85,13 +86,13 @@ class _SignUpForm extends State<SignUpForm>{
               margin: EdgeInsets.only(right: 33, left: 33),
               child: Divider(
                 thickness: 4,
-                color: Color(0xff29B2FE),
+                color: AppColor.blue,
               ),
             ),
             Container(
               margin: EdgeInsets.all(20),
               child: CardBox(
-                Colors.white,
+                AppColor.white,
                 10,
                 Form(
                     key: formkey,
@@ -261,7 +262,7 @@ class _SignUpForm extends State<SignUpForm>{
                               }
                             },
                             child: Text('Sign Up'),
-                            color: Color(0xff29B2FE),
+                            color: AppColor.blue,
                           ),
                         ),
                         Container(
@@ -277,11 +278,11 @@ class _SignUpForm extends State<SignUpForm>{
                                   // you'd often call a server or save the information in a database.
                                 }
                               },
-                              color: Colors.white,
+                              color: AppColor.white,
                               label: Text(
                                 'Sign in with Facebook',
                                 style: TextStyle(
-                                    color: Color(0xff3B5998), fontSize: 16),
+                                    color: AppColor.darkBlue, fontSize: 16),
                               ),
                               icon: Image.asset(
                                 "images/facebook.png",
@@ -290,7 +291,7 @@ class _SignUpForm extends State<SignUpForm>{
                               ),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8.0),
-                                  side: BorderSide(color: Color(0xff29B2FE)))),
+                                  side: BorderSide(color: AppColor.blue))),
                         ),
                         Container(
                           width: double.infinity,
@@ -316,11 +317,11 @@ class _SignUpForm extends State<SignUpForm>{
                                   }
                                 }).catchError(handleGoogleLoginError);
                               },
-                              color: Colors.white,
+                              color: AppColor.white,
                               label: Text(
                                 'Sign in with Google',
                                 style: TextStyle(
-                                    color: Color(0xffDD4B39), fontSize: 16),
+                                    color:AppColor.red, fontSize: 16),
                               ),
                               icon: Image.asset(
                                 "images/google.png",
@@ -329,7 +330,7 @@ class _SignUpForm extends State<SignUpForm>{
                               ),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8.0),
-                                  side: BorderSide(color: Color(0xff29B2FE)))),
+                                  side: BorderSide(color: AppColor.blue))),
                         ),
                       ],
                     )),

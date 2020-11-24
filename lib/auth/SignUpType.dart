@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterpractice/Model/login/SignInSocial.dart';
 import 'package:flutterpractice/auth/SignUpForm.dart';
 import 'package:firebase_auth/firebase_auth.dart' as eos;
+import 'package:flutterpractice/core/AppColor.dart';
 
 
 class SignUpType extends StatefulWidget{
@@ -44,7 +45,7 @@ class _SignUpType extends State{
           margin: EdgeInsets.only(right: 33,left: 33),
           child: Divider(
             thickness: 4,
-            color: Color(0xff29B2FE),
+            color:  AppColor.blue,
           ),
         ),
          Container(
