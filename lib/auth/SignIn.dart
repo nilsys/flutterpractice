@@ -163,15 +163,16 @@ class _SignIn extends State<SignIn> {
                                               SharedPreferences prefs =
                                               await SharedPreferences
                                                   .getInstance();
+                                              //
+                                              // TokenCache.instance.setAccessToken(value.token);
+                                              // UserCache.instance.setUserCache(true);
+                                              // UserCache.instance.setUserType(value.user.type);
+                                              // UserCache.instance.setUserImage(value.user.avatar);
+                                              // UserCache.instance.setUserName(value.user.name);
+                                              // UserCache.instance.setUserPhone(value.user.mobile);
+                                              // UserCache.instance.setUserEmail(value.user.email);
+                                              UserCache.instance.setUser(value);
 
-                                              TokenCache.instance.setAccessToken(
-                                                  value.token);
-                                              UserCache.instance.setUserCache(true);
-                                              UserCache.instance.setUserType(value.user.type);
-                                              UserCache.instance.setUserImage(value.user.avatar);
-                                              UserCache.instance.setUserName(value.user.name);
-                                              UserCache.instance.setUserPhone(value.user.mobile);
-                                              UserCache.instance.setUserEmail(value.user.email);
                                              // UserCache.instance.setUserlocation(value.user.location.address);
                                               if (value.user.type ==
                                                   "serviceProvider") {
@@ -248,14 +249,14 @@ class _SignIn extends State<SignIn> {
                                                       'social_type': "google",
                                                     }).then((loginGoogle) {
                                                     if ( loginGoogle.user!=null) {
-                                                    TokenCache.instance.setAccessToken(loginGoogle.token);
-                                                    UserCache.instance.setUserCache(true);
-                                                    UserCache.instance.setUserType(loginGoogle.user.type);
-                                                    UserCache.instance.setUserImage(loginGoogle.user.avatar);
-                                                    UserCache.instance.setUserName(loginGoogle.user.name);
-                                                    UserCache.instance.setUserPhone(loginGoogle.user.mobile);
-                                                    UserCache.instance.setUserEmail(loginGoogle.user.email);
-                                                    UserCache.instance.setUserlocation(loginGoogle.user.location);
+                                                    // TokenCache.instance.setAccessToken(loginGoogle.token);
+                                                    // UserCache.instance.setUserCache(true);
+                                                    // UserCache.instance.setUserType(loginGoogle.user.type);
+                                                    // UserCache.instance.setUserImage(loginGoogle.user.avatar);
+                                                    // UserCache.instance.setUserName(loginGoogle.user.name);
+                                                    // UserCache.instance.setUserPhone(loginGoogle.user.mobile);
+                                                    // UserCache.instance.setUserEmail(loginGoogle.user.email);
+                                                    UserCache.instance.setUser(loginGoogle);
 
                                                         if (loginGoogle.user.type == "serviceProvider") {}
                                                         else if (loginGoogle.user.type == "customer") {
@@ -270,12 +271,13 @@ class _SignIn extends State<SignIn> {
                                                         }
                                                       }
                                                     }).catchError((Object error) {
-                                            //      onErrorGoogle(err);
+                                                  onErrorGoogle(userDetails);
                                                 });
+
                                               }
+                                            },onError: (error){
+
                                             });
-
-
                                           },
                                           color: AppColor.white,
                                           label: Text(

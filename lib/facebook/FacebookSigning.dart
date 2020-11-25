@@ -51,8 +51,6 @@ class FacebookSigning {
                 .accessToken.token}');
         final FacebookAccessToken accessToken = facebookLoginResult.accessToken;
         var userId = accessToken.userId;
-
-
         var user = json.decode(graphResponse.body);
         FacebookResponse facebookResponse = FacebookResponse.fromJson(user);
 
@@ -74,7 +72,7 @@ class FacebookSigning {
                 'social_type': "facebook",
               }).then((value)   {
 
-             saveUserData(value);
+            UserCache.instance.setUser(value);
              Navigator.of(context).push(new MaterialPageRoute(builder: (context) => new MainScreens()));
 
                  }).catchError((Object error) {
@@ -85,11 +83,8 @@ class FacebookSigning {
                     new SignUpType(user: profile)));
 
             onLoginStatusChanged(true, profileData: profile);
-
-          });
-
-        break;
-
+                 });
+          break;
         }
     }
 
@@ -137,24 +132,10 @@ class FacebookSigning {
         //  onPressed: () => initiateFacebookLogin(),
       );
     }
-
-
   }
   void  logout()  async {
     await facebookLogin.logOut();
     onLoginStatusChanged(false);
     print("Logged out");
-  }
-  void saveUserData(SignInSocial value){
-    print('tokeninFacebook    '+value.token);
-    TokenCache.instance.setAccessToken(value.token);
-    UserCache.instance.setUserCache(true);
-    UserCache.instance.setUserType(value.user.type);
-    UserCache.instance.setUserImage(value.user.avatar);
-    UserCache.instance.setUserName(value.user.name);
-    UserCache.instance.setUserPhone(value.user.mobile);
-    UserCache.instance.setUserEmail(value.user.email);
-    UserCache.instance.setUserlocation(value.user.location);
-
   }
 }

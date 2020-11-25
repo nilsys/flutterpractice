@@ -25,9 +25,9 @@ class AuthRepository{
   }
 
 
-  Future<SignInSocial> signInSocial(String endpoint,Map<String,String> headers,Map<String,String> body) async {
+  Future<UserResponse> signInSocial(String endpoint,Map<String,String> headers,Map<String,String> body) async {
     var jsonData = await network.post(endpoint, headers ,body);
-    SignInSocial userResponse = await SignInSocial.fromJson(jsonData);
+    UserResponse userResponse = await UserResponse.fromJson(jsonData);
     print("aaaaaa"+userResponse.user.name);
     print("aaaaaa"+userResponse.user.id.toString());
     return userResponse;

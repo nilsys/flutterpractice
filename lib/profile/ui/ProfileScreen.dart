@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutterpractice/Model/login/UserResponse.dart';
 import 'package:flutterpractice/auth/AuthRepository.dart';
 import 'package:flutterpractice/auth/SignIn.dart';
-import 'package:flutterpractice/cache/AppCache.dart';
 import 'package:flutterpractice/cache/TokenCache.dart';
 import 'package:flutterpractice/cache/UserCache.dart';
 import 'package:flutterpractice/component/CardBox.dart';
 import 'package:flutterpractice/core/AppColor.dart';
 import 'package:flutterpractice/profile/blocks/ProfileBlock.dart';
-import 'package:flutterpractice/profile/model/ProfileModel.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -18,7 +16,6 @@ class ProfileScreen extends StatefulWidget {
     return ProfileScreenState();
   }
 }
-
 class ProfileScreenState extends State<ProfileScreen> {
   var auth = AuthRepository();
   final bloc = Profilebloc();
@@ -35,9 +32,9 @@ class ProfileScreenState extends State<ProfileScreen> {
         child: Scaffold(
       appBar: AppBar(title: Text("My Profile")),
       body: Container(
-        child: StreamBuilder<ProfileModel>(
+        child: StreamBuilder<User>(
             stream: bloc.userController.stream,
-            builder: (BuildContext context, AsyncSnapshot<ProfileModel> snapshot) {
+            builder: (BuildContext context, AsyncSnapshot<User> snapshot) {
               if(snapshot.hasError) return Text("error");
               if(!snapshot.hasData) return Text("empty");
                 return buildList(snapshot.data);
@@ -46,7 +43,7 @@ class ProfileScreenState extends State<ProfileScreen> {
     ));
   }
 
-  Widget buildList(ProfileModel snapshot) {
+  Widget buildList(User snapshot) {
     return Container(
       child: Column(
         children: [
@@ -59,7 +56,7 @@ class ProfileScreenState extends State<ProfileScreen> {
             child: CardBox(
               AppColor.white,
               4,
-              Container(child: Image.network(snapshot.image)),
+              Container(child: Image.network(snapshot.avatar)),
             ),
           ),
           Container(
@@ -83,7 +80,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                         width: 10,
                       ),
                       Text(
-                        snapshot.userName,
+                        snapshot.name,
                         style:
                             TextStyle(fontSize: 18, color: AppColor.darkBlue),
                       )
@@ -98,7 +95,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                         width: 10,
                       ),
                       Text(
-                        snapshot.userEmail,
+                        snapshot.email,
                         style:
                             TextStyle(fontSize: 18, color:AppColor.darkBlue),
                       )
@@ -113,7 +110,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                         width: 10,
                       ),
                       Text(
-                        snapshot.userPhone,
+                        snapshot.mobile,
                         style:
                             TextStyle(fontSize: 18, color: AppColor.darkBlue),
                       )
@@ -127,11 +124,10 @@ class ProfileScreenState extends State<ProfileScreen> {
                       SizedBox(
                         width: 10,
                       ),
-                      Text(
-                        snapshot.userLocation??'',
-                        style:
-                            TextStyle(fontSize: 18, color: AppColor.darkBlue),
-                      )
+                      // Text(snapshot.location.address??'',
+                      //   style:
+                      //       TextStyle(fontSize: 18, color: AppColor.darkBlue),
+                      // )
                     ],
                   ),
                 ],

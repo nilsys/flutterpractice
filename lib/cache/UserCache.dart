@@ -1,5 +1,10 @@
 
 
+import 'dart:convert';
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutterpractice/Model/login/UserResponse.dart' as eos;
+
 import 'AppCache.dart';
 
 class UserCache {
@@ -12,11 +17,11 @@ class UserCache {
 
   void setUserCache(bool isUser){
     if (isUser == null) return ;
-    AppCache.instance.prefs.setBool(AppCache.KEY_USER, isUser);
+    AppCache.instance.prefs.setBool(AppCache.KEY_EXIST, isUser);
   }
 
   bool getUserCache(){
-    bool isUser= AppCache.instance.prefs.get(AppCache.KEY_USER);
+    bool isUser= AppCache.instance.prefs.get(AppCache.KEY_EXIST);
     return isUser;
   }
 
@@ -63,29 +68,29 @@ class UserCache {
     String phone = AppCache.instance.prefs.getString(AppCache.KEY_PHONE_NUMBER);
     return phone;
   }
-
-
   void setUserImage(String image){
     if (image == null) return ;
     AppCache.instance.prefs.setString(AppCache.KEY_PROFILE_IMAGE, image);
   }
-
   String getUserImage() {
     String image = AppCache.instance.prefs.getString(AppCache.KEY_PROFILE_IMAGE);
     return image;
   }
-
-
   void setUserlocation(String location){
     if (location == null) return ;
     AppCache.instance.prefs.setString(AppCache.KEY_LOCATION, location);
   }
-
   String getUserLocation(){
     String location = AppCache.instance.prefs.getString(AppCache.KEY_LOCATION);
     return location;
   }
-
-
-
+  void setUser(eos.UserResponse model){
+    if (model ==null) return;
+    String json =jsonEncode(model.toJson());
+    AppCache.instance.prefs.setString(AppCache.KEY_USER, json);
+  }
+  eos.UserResponse getUser(){
+    String json = AppCache.instance.prefs.getString(AppCache.KEY_USER);
+    return json == null ? null : eos.UserResponse.fromJson(jsonDecode(json));
+  }
 }

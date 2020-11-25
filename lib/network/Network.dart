@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutterpractice/Model/login/UserResponse.dart';
 import 'package:flutterpractice/cache/TokenCache.dart';
+import 'package:flutterpractice/cache/UserCache.dart';
 import 'package:http/http.dart' as http;
 
 class Network {

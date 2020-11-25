@@ -29,12 +29,15 @@ class _Home extends State<Home>{
   var auth=new AuthRepository();
   var homeRepository=HomeRepository();
   var token;
+
   @override
-  Future<void> initState() {
+  void initState() {
     // TODO: implement initState
     super.initState();
 
   }
+
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold (
