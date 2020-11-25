@@ -83,6 +83,13 @@ flutter:
     - images/forthintro.png
     - images/chat.png
     - images/signupform.png
+    - images/car.png
+    - images/project.png
+    - images/setting.png
+    - images/language.png
+    - images/policy.png
+    - images/terms.png
+    - images/contactus.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

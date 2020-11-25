@@ -40,6 +40,7 @@ class _SignIn extends State<SignIn> {
   TextEditingController passwordController = new TextEditingController();
 
 
+
   @override
   void initState() {
     // TODO: implement initState
@@ -61,7 +62,7 @@ class _SignIn extends State<SignIn> {
                 children: [
                   SizedBox(height: 10),
                   Container(
-                      child: Image.asset("images/login.png", height: 120)
+                      child: Image.asset("images/login.png", height:MediaQuery.of(context).size.height/6)
                   ),
                   Container(
                     padding: EdgeInsets.only(left: 33, right: 33),
@@ -109,7 +110,7 @@ class _SignIn extends State<SignIn> {
                                       prefixIcon: Icon(Icons.email_outlined),
                                     ),
                                   ),
-                                  SizedBox(height: 20),
+                                  SizedBox(height:MediaQuery.of(context).size.height/50),
                                   TextFormField(
                                     obscureText: true,
                                     // The validator receives the text that the user has entered.
@@ -142,8 +143,8 @@ class _SignIn extends State<SignIn> {
                                     ),
                                   ),
                                   Container(
-                                    width: double.infinity,
-                                    height: 55,
+                                    width: MediaQuery.of(context).size.width,
+                                    height: MediaQuery.of(context).size.height/15,
                                     margin: EdgeInsets.only(
                                         right: 10, left: 10, top: 20),
                                     child:
@@ -170,9 +171,10 @@ class _SignIn extends State<SignIn> {
                                             UserCache.instance.setUserName(value.user.name);
                                             UserCache.instance.setUserPhone(value.user.mobile);
                                             UserCache.instance.setUserEmail(value.user.email);
-                                            UserCache.instance.setUserlocation(value.user.location.address);
+                                           // UserCache.instance.setUserlocation(value.user.location.address);
                                             if (value.user.type ==
                                                 "serviceProvider") {
+                                              print('ServiceProvider');
                                             } else if (value.user.type == "customer") {
                                               //go to client home
                                               Navigator.of(context)
@@ -181,16 +183,16 @@ class _SignIn extends State<SignIn> {
                                                       builder: (context) =>
                                                       new MainScreens()));
                                             }
-                                          }).catchError(handleError());
+                                          }).catchError((Object error) {});
                                         }
                                       },
-                                      child: Text('Login'),
+                                      child: Text('Login',style: TextStyle(fontSize: 16)),
                                       color: AppColor.blue,
                                     ),
                                   ),
                                   Container(
-                                    width: double.infinity,
-                                    height: 56,
+                                    width:  MediaQuery.of(context).size.width,
+                                    height: MediaQuery.of(context).size.height/15,
                                     margin: EdgeInsets.only(
                                         right: 10, left: 10, top: 10),
                                     child: RaisedButton.icon(
@@ -226,8 +228,8 @@ class _SignIn extends State<SignIn> {
                                     ,
                                   ),
                                   Container(
-                                    width: double.infinity,
-                                    height: 56,
+                                    width: MediaQuery.of(context).size.width,
+                                    height: MediaQuery.of(context).size.height/15,
                                     margin: EdgeInsets.only(
                                         right: 10, left: 10, top: 10),
                                     child: RaisedButton.icon(
@@ -300,7 +302,7 @@ class _SignIn extends State<SignIn> {
                     )),),
                   Container(
                       width: double.infinity,
-                      height: 55,
+                      height: MediaQuery.of(context).size.height/15,
                       margin: EdgeInsets.only(
                           right: 10, left: 10, top: 10),
                       child:

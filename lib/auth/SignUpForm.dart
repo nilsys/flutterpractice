@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart' as fa;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterpractice/Model/login/SignInSocial.dart' as ls;
-import 'package:flutterpractice/Model/login/SignInSocial.dart';
 import 'file:///C:/Users/intcore-013/AndroidStudioProjects/flutterpractice/lib/core/Validation.dart';
 import 'package:flutterpractice/auth/AuthRepository.dart';
 import 'package:flutterpractice/cache/TokenCache.dart';
@@ -28,7 +27,6 @@ class  SignUpForm extends StatefulWidget{
 
     return _SignUpForm(userDetails,type,user);
   }
-
 }
 
 class _SignUpForm extends State<SignUpForm>{

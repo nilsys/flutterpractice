@@ -2,6 +2,8 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterpractice/garage/ui/Garage.dart';
+import 'package:flutterpractice/setting/Setting.dart';
 import 'file:///C:/Users/intcore-013/AndroidStudioProjects/flutterpractice/lib/profile/ui/ProfileScreen.dart';
 import 'package:flutterpractice/ui/ClassicGarage.dart';
 
@@ -11,7 +13,7 @@ import '../auth/SignIn.dart';
 
 class _MainScreen extends State<MainScreens> {
   var _selectedIndex ;
-  List<Widget> _Screens=[Home(),ClassicGarage(),ProfileScreen()];
+  List<Widget> _Screens=[Home(),Garage(),ProfileScreen(),Setting()];
   PageController _pageController=PageController();
 
   // This widget is the root of your application.

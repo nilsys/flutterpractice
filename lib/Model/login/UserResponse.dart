@@ -39,9 +39,9 @@ class User {
   List<Skills> skills;
   List<Categories> categories;
   int rates;
-  ProjectCounter projectCounter;
-  ProjectCounter bidsCounter;
-  ProjectCounter projectNumber;
+  int projectCounter;
+  int bidsCounter;
+  int projectNumber;
   String avatar;
   String register;
   Object statistics;
@@ -105,15 +105,9 @@ class User {
       });
     }
     rates = json['rates'];
-    projectCounter = json['projectCounter'] != null
-        ? new ProjectCounter.fromJson(json['projectCounter'])
-        : null;
-    bidsCounter = json['bidsCounter'] != null
-        ? new ProjectCounter.fromJson(json['bidsCounter'])
-        : null;
-    projectNumber = json['projectNumber'] != null
-        ? new ProjectCounter.fromJson(json['projectNumber'])
-        : null;
+    // projectCounter = json['projectCounter'] ;
+    // bidsCounter = json['bidsCounter'];
+    // projectNumber = json['projectNumber'] ;
     avatar = json['avatar'];
     register = json['register'];
     statistics = json['statistics'];
@@ -156,13 +150,13 @@ class User {
     }
     data['rates'] = this.rates;
     if (this.projectCounter != null) {
-      data['projectCounter'] = this.projectCounter.toJson();
+      data['projectCounter'] = this.projectCounter;
     }
     if (this.bidsCounter != null) {
-      data['bidsCounter'] = this.bidsCounter.toJson();
+      data['bidsCounter'] = this.bidsCounter;
     }
     if (this.projectNumber != null) {
-      data['projectNumber'] = this.projectNumber.toJson();
+      data['projectNumber'] = this.projectNumber;
     }
     data['avatar'] = this.avatar;
     data['register'] = this.register;
