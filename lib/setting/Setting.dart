@@ -54,20 +54,20 @@ class _Setting extends State {
                 child: ListTile(leading: Image.asset('images/contactus.png'),title: Text("Contact Us")),
               )
               ),),
-            Container(child:
-              Row(children: [
+            Container(
+              margin: EdgeInsets.only(left: 20,right: 20,top:16 ),
+              child: Row(children: [
                 Expanded(
                  child:  Container(
-                   margin: EdgeInsets.only(left: 20,right: 20,top:16 ),
                    child: CardBox(
                        AppColor.white,4,Container(
                      child: ListTile(leading: Image.asset('images/terms.png'),title: Text("Rate App",style: TextStyle(fontSize: 14))),
                    )
                    ),),
                 ),
+                SizedBox(width: 8,),
                 Expanded(
                   child:  Container(
-                    margin: EdgeInsets.only(left: 20,right: 20,top:16 ),
                     child: CardBox(
                         AppColor.white,4,Container(
                       child: ListTile(leading: Image.asset('images/terms.png'),title: Text("Share App",style: TextStyle(fontSize: 14),)),
